@@ -1,0 +1,521 @@
+# Basics
+
+## Objects
+
+-   character
+-   numeric (real numbers): double precision real numbers Inf: infinity; e.g, 1/Inf = 0 NaN: not a number; e.g, 0/0 = NaN
+-   integer: entering `1` in R gives you a numeric object; entering `1L` explicitly gives you an integer object.
+-   complex
+-   logical (True/False)
+
+Examples: x \<- c(0.5, 0.6) \## numeric x \<- c(TRUE, FALSE) \## logical x \<- c(T, F) \## logical x \<- c("a", "b", "c") \## character x \<- 9:29 \## integer x \<- c(1+0i, 2+4i) \## complex
+
+## Operators
+
+`:` create integer sequences
+
+## atributes()
+
+O R permite que adicionemos atributos aos objetos, o que significa associar propriedades como: nomes, dimensões, classes, comentários, etc.
+
+Atributos básicos: class() e lenght()
+
+Adicionando atributo nome:
+
+``` r
+> x <- c(1:5)
+
+> x
+[1] 1 2 3 4 5
+
+> names(x) <- c("um", "dois", "três", "quatro", "cinco")
+
+> x
+    um   dois   três quatro  cinco 
+     1      2      3      4      5 
+     
+> attributes(x)
+$names
+[1] "um"     "dois"   "três"   "quatro" "cinco" 
+```
+
+-   names, dimnames
+-   dimensions (e.g. matrices, arrays)
+-   class (e.g. integer, numeric)
+-   length
+-   other user-defined attributes/metadata
+
+## Explicit Coercion
+
+hierarquia de coerção: character \> complex \> numeric \> integer \> logical \> raw
+
+-   `class(x)`: returns the class of `x`
+-   `as.character(x)`: coerce `x` to a character vector
+-   `as.numeric(x)`: coerce `x` to a numeric vector
+-   `as.integer(x)`: coerce `x` to an integer vector
+-   `as.logical(x)`: coerce `x` to a logical vector
+-   `as.complex(x)`: coerce `x` to a complex vector
+-   `as.matrix(x)`: coerce `x` to a matrix
+-   `as.array(x)`: coerce `x` to an array
+-   `as.data.frame(x)`: coerce `x` to a data frame
+-   `as.list(x)`: coerce `x` to a list
+-   `as.environment(x)`: coerce `x` to an environment
+-   `as.call(x)`: coerce `x` to a call
+-   `as.name(x)`: coerce `x` to a name
+-   `as.symbol(x)`: coerce `x` to a symbol
+-   `as.expression(x)`: coerce `x` to an expression
+-   `as.function(x)`: coerce `x` to a function
+
+Examples: \> class(length(c(TRUE, FALSE))) \# lenght converte logical para integer [1] "integer"
+
+> class(c(TRUE, FALSE)) [1] "logical"
+
+> class(cos(c(3L, 5L, 8L))) \# cos converte integer para numeric [1] "numeric"
+
+> class(c(3L, 5L, 8L)) [1] "integer"
+
+## Subsetting
+
+`?Extract` ou `?Syntax`\
+Para tirar dúvidas sobre como consultar os diferentes tipos de objetos no R consulte o help
+
+### Vectors
+
+``` r
+> x <- c(1:5)
+> names(x) <- c("um", "dois", "três", "quatro", "cinco")
+> x
+    um   dois   três quatro  cinco 
+     1      2      3      4      5 
+     
+> x["três"]
+três 
+   3 
+   
+> x[-"três"]
+Error in -"três" : invalid argument to unary operator
+
+> names(x) != "três"
+[1]  TRUE  TRUE FALSE  TRUE  TRUE
+
+> x[names(x) != "três"]
+    um   dois quatro  cinco 
+     1      2      4      5 
+     
+> x[c("um","três")]
+  um três 
+   1    3 
+   
+> x[names(x) != c("três", "um")]
+    um   dois quatro  cinco 
+     1      2      4      5 
+Warning message:
+In names(x) != c("três", "um") :
+  longer object length is not a multiple of shorter object length
+  
+> x[!names(x) %in% c("um","três")]
+  dois quatro  cinco 
+     2      4      5 
+```
+
+perceba que o `%in%` é importante pois a comparação é feita avaliando cada um dos elementos à esquerda, em cada um dos elementos à direita. Enquanto que os simbolos `==` e `!=` avaliam par a par
+
+basta indicar o índice do elemento de interesse entre colchetes #consultando elementos de um vetor ex_acesso \<- c("primeiro", "segundo", "terceiro") ex_acesso
+
+acessando o primeiro elemento ex_acesso[1]
+
+acessando o último elemento n \<- 3; ex_acesso[n]
+
+Para consultar múltiplos elementos, podemos indicar os índices de interesse por meio de um vetor: #consultando multiplos elementos de um vetor por meio da função c() ex_acesso[c(2,4)] #ou qualquer função que retorne os índices ex_acesso[1:2] #podemos inclusive fazer consultas em outras ordens ex_acesso[5:1] #ou criar novos objetos a partir destes ex_acesso2 \<- ex_acesso[c(1,3,5)]; ex_acesso2 #ou ainda utilizar vetores lógicos ex_acesso[c(rep(TRUE,3), rep(FALSE,3))]
+
+No R podemos inclusive fazer consultas a partir dos elementos que não temos interesse: #excluindo o primeiro elemento ex_acesso[-1] #excluindo os três últimos elementos n \<- 5; ex_acesso[-((n-2):n)]
+
+### Dataframes
+
+``` r
+#por vetores de índice:
+df[3,2] # row 3, column 2
+df[c(2,4), ] # rows 2 and 4
+df[1,1:2] # row 1, columns 1 and 2
+
+#por nomenclatura:
+df$idade # column idade
+df[c("idade","classe")] # two columns
+
+#por vetores lógicos, e combinando as opções anteriores:
+df[df$idade>30, 1] # idade>30, but just the first column
+df[df$idade>30, ] ## idade>30, but all columns
+
+#exemplos
+## rownames
+df[rownames(df) == 4, ] # by rowname, all columns
+df[df$flag == T, ] # all rows for which flag is true, and all columns
+df[is.na(df$flag), ] # all rows for which the rows in flag are NA, returning all columns
+
+##colnames
+df[ , (colnames(df) %in% c("idade", "flag"))] # all rows, and 2 columns 
+df[ , !(names(df) %in% c("idade", "flag"))]
+```
+
+### Lists
+
+``` r
+> ex_list <- list(9:1, ex_df = ex_df, TRUE)
+> ex_list
+[[1]]
+[1] 9 8 7 6 5 4 3 2 1
+
+$ex_df
+  idade classe  flag
+1    31      D  TRUE
+2    30      C  TRUE
+3    25      C    NA
+4    40      B FALSE
+
+[[3]]
+[1] TRUE
+
+> 
+> #CONSULTA
+> #podemos seguir o padrão dos vetores usando `[`, tendo sempre listas como retorno.
+> ex_list[1]
+[[1]]
+[1] 9 8 7 6 5 4 3 2 1
+
+> class(ex_list[1])
+[1] "list"
+> 
+> # Ou por meio de `[[` tendo como retorno a classe do elemento consultado
+> ex_list[[1]]
+[1] 9 8 7 6 5 4 3 2 1
+> class(ex_list[[1]])
+[1] "integer"
+> #ou ainda `$` caso os elementos sejam nomeados
+> ex_list$ex_df
+  idade classe  flag
+1    31      D  TRUE
+2    30      C  TRUE
+3    25      C    NA
+4    40      B FALSE
+> class(ex_list$ex_df)
+[1] "data.frame"
+> 
+> #CLASSE
+> #Listas possuem uma classe própria e permitem que seus elementos mantenham as suas próprias classes
+> class(ex_list)
+[1] "list"
+> class(ex_list[[1]])
+[1] "integer"
+> class(ex_list$ex_df)
+[1] "data.frame"
+> class(ex_list[[3]])
+[1] "logical"
+```
+
+## Datas
+
+as.Date()
+
+``` r
+> ex_date <- as.Date(c("1988-03-25", "2019-03-25"))
+> ex_date
+[1] "1988-03-25" "2019-03-25"
+> typeof(ex_date)
+[1] "double"
+> class(ex_date)
+[1] "Date"
+> #ou ainda
+> as.Date("01/12/2012", format = "%d/%m/%Y")
+[1] "2012-12-01"
+
+> ex_date[1] - ex_date[2]
+Time difference of -11322 days
+```
+
+Abaixo seguem algumas alternativas de formato - para mais opções consulte `?strptime`: - %d: dias numéricos (0-31) - %a: dias da semana, abreviados (Mon) - %A: dias da semana, não abreviados (Monday) - %m: meses numéricos (00-12) - %b: meses em texto, abreviados (Jan) - %B: meses em texto, não abreviados (January) - %y: anos com dois dígitos (19) - %Y: anos com quatro dígitos (2019)
+
+# Functions
+
+-   podemos ver o código da função ao digitar a função sem os parênteses
+
+## a
+
+abs(): computes the absolute value of x
+
+attributes(x): returns a list of attributes of `x`
+
+as.Date()
+
+``` r
+> ex_date <- as.Date(c("1988-03-25", "2019-03-25"))
+> ex_date
+[1] "1988-03-25" "2019-03-25"
+> typeof(ex_date)
+[1] "double"
+> class(ex_date)
+[1] "Date"
+> #ou ainda
+> as.Date("01/12/2012", format = "%d/%m/%Y")
+[1] "2012-12-01"
+```
+
+## b
+
+```         
+builtins(): returns a list of functions from base R
+boxplot():
+```
+
+## c
+
+c(): concatenates objects
+
+class(x): returns the class of `x`
+
+class() vs. typeof(): Use class() to understand how R will treat the object in a functional or object-oriented context.Use typeof() to examine the object's fundamental data type, especially when dealing with low-level operations or debugging.
+
+Example:
+
+``` r
+> ex_fator <- as.factor(LETTERS[1:5])
+> ex_fator
+[1] A B C D E
+Levels: A B C D E
+> typeof(ex_fator)
+[1] "integer"
+> class(ex_fator)
+[1] "factor"
+> levels(ex_fator)
+[1] "A" "B" "C" "D" "E"
+```
+
+| Aspect           | class()                    | typeof()                     |
+|--------------------|-------------------------------|---------------------|
+| Focus            | Object's behavior (OOP)    | Internal data type           |
+| Use in Methods   | Determines method dispatch | Not relevant to methods      |
+| Output Type      | High-level classification  | Low-level classification     |
+| Example (factor) | `class(factor)` = "factor" | `typeof(factor)` = "integer" |
+
+## d
+
+data(): mostra todas as bases de bancos / bancos de dados nativas no R
+
+## e
+
+## f
+
+factor(): Os fatores permitem que seus níveis sejam ordenados, de modo que podemos diferenciar as variáveis categóricas nominais e ordinais. - funções associadas: levels(), ordered(), is.factor(), is.ordered(), as.factor(), as.ordered()
+
+Exemplo variáveis nominais:
+
+``` r
+> var_nominal <- c(rep(0,2), rep(1, 3)); var_nominal
+[1] 0 0 1 1 1
+> var_factor <- factor(var_nominal); var_factor
+[1] 0 0 1 1 1
+Levels: 0 1
+```
+
+Exemplo variáveis ordinais:
+
+``` r
+> var_ordinal <- factor(c(rep("baixo",2), rep("alto", 3))); var_ordinal
+[1] baixo baixo alto  alto  alto 
+Levels: alto baixo
+> var_ordinal <- ordered(var_ordinal); var_ordinal
+[1] baixo baixo alto  alto  alto 
+Levels: alto < baixo
+> #podemos fazer a alteração redefinindo os níveis
+> levels(var_ordinal) <- c("baixo", "alto"); var_ordinal
+[1] alto  alto  baixo baixo baixo
+Levels: baixo < alto
+> 
+```
+
+## g
+
+## h
+
+```         
+head(): retorna as primeiras linhas 
+help(); ?`function name`; caracteres especiais devem estar entre crases ?`?'
+    help(package = stats): see help page for a specific package
+help.search() ou ??`term`: broad search
+```
+
+## i
+
+is.--() character, numeric, list... to test object type
+
+## j
+
+## k
+
+## l
+
+```         
+> letters
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x"
+[25] "y" "z"
+> LETTERS
+ [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X"
+[25] "Y" "Z"
+```
+
+levels(): imprime os níveis de variáveis categóricas ou altera os níveis
+
+``` r
+> var_nominal <- c(rep(0,2), rep(1, 3)); var_nominal
+[1] 0 0 1 1 1
+> var_factor <- factor(var_nominal); var_factor
+[1] 0 0 1 1 1
+Levels: 0 1
+> #podemos checar os níveis de fator 
+> levels(var_factor) 
+[1] "0" "1"
+> #e altera-los
+> levels(var_factor)[1] <- "masculino"; 
+> levels(var_factor)[2] <- "feminino"
+> var_factor
+[1] masculino masculino feminino  feminino  feminino 
+Levels: masculino feminino
+> #e inclusive adicionar níveis à variável
+> levels(var_factor) <- c(levels(var_factor), "prefiro não responder")
+> #e assim visualizar os resultados da varíavel, mesmo sem observações vinculadas
+> table(var_factor)
+var_factor
+            masculino              feminino prefiro não responder 
+                    2                     3                     0 
+```
+
+list.dirs(path = "/path/to/directory", full.names = TRUE, recursive = TRUE)
+
+-   **`list.dirs()`**: Lists directories and subdirectories.
+
+-   **`recursive = TRUE`**: Ensures all levels are included.
+
+-   **`full.names = TRUE`**: Provides full paths for each directory.
+
+ls(): lista todos os objetos na sessão
+
+## m
+
+```         
+methods(generic.function, class): lists all available methods for a S3 function, or all methods for a specific class, if specified.
+    Methods with an asterisk (*) are not directly accessible but are registered internally.
+    1. List All Methods for a Generic Function. E.g. methods("plot"); methods("summary"); methods("print")
+    2. List Methods for a Specific Class. E.g. methods(class = "data.frame"); methods(class = "lm")
+    3. List All Methods: If no arguments are provided, it lists all methods available in the current session
+    Use showMethods() for S4 functions
+```
+
+## n
+
+## o
+
+```         
+options(): check and set R options for computations and results 
+```
+
+## p
+
+paste()
+
+``` r
+> paste("#", "rstats")
+[1] "# rstats"
+
+> paste("#", "rstats", sep=" ")
+[1] "# rstats"
+
+> paste("#", "rstats", sep="")
+[1] "#rstats"
+```
+
+plot(): Generic function for plotting of R objects
+
+## q
+
+## r
+
+rep(x, times): replicates elements of vectors or Lists
+
+require(): semelhante a library(), mas não da erro se o pacote não está instalado
+
+rm(): remove objetos
+
+## s
+
+seq(from = 1, to = 1, by = 1)
+
+knitr::spin() converts R script to .Rmd files
+
+1.  **`hair`**: The file path of the R script you want to convert.
+
+2.  **`knit`**: A logical value indicating whether to knit the document after spinning. Default is `TRUE`. To change file location, set knit = false, and on the following line add file.rename("your_script.Rmd", "desired/path/your_script.Rmd")
+
+3.  **`report`**: A logical value. If `TRUE`, it adds a default YAML header to the generated document.
+
+4.  **`format`**: Specifies the output format. You can set it to `"Rmd"` for R Markdown, `"Rnw"` for Sweave, or `"Rhtml"` for R HTML.
+
+5.  **`doc`**: Logical, controlling whether to add a simple documentation header. Default is `FALSE`.
+
+6.  **`comment`**: A string indicating how comments are recognized. By default, it’s `"^#'"`.
+
+7.  **`dep`**: A logical value. If `TRUE`, dependencies are added to the document header. Default is `TRUE`.
+
+sqrt(): square root
+
+str(): exibe a estrutura interna de um objeto summary(): produce result summaries. The function invokes particular methods which depend on the class of the first argument.
+
+## t
+
+```         
+tail(): retorna as últimas linhas
+typeof(): verificar qual é o tipo de armazenamento de um objeto
+```
+
+## u
+
+## v
+
+```         
+vector(): creates a vector ; x <- vector("numeric", length = 10)
+vectorize(): vectorizes a scalar function
+    vectorize(FUN, vectorize.args = arg.names, SIMPLIFY = TRUE, USE.NAMES = TRUE)
+```
+
+## w
+
+## x
+
+## y
+
+## z
+
+# Shortcuts
+
+```         
+Cmd+Shift+c: adiciona comentários; <!-- --> em .Rmd ou # em .R
+```
+
+# Important packages
+
+## forcats = para manipulação de variáveis categóricas
+
+## janitor = para mostrar resultados de variáveis categóricas
+
+```         
+janitor::tabyl
+```
+
+## skimr = Exploratory data Analysis
+
+```         
+skimr::skim()
+```
+
+# Useful links
+
+-   link para consultar bibliotecas: <https://r-universe.dev/>
+-   libros: <http://www.feat.engineering/handling-missing-data>
