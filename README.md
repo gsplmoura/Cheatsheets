@@ -1,8 +1,3 @@
----
-title: "README"
-output: html_document
----
-
 ### **Cheatsheets: An R Project for Quick Reference Guides**
 
 **Cheatsheets** is an R project designed to provide a collection of quick-reference guides for essential R packages, functions, and workflows. This project serves as a **handy companion** for R users who need concise, well-organized information without searching through extensive documentation.
