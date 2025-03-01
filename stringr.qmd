@@ -1,67 +1,168 @@
 ---
-title: "String manipulation with stringr :: Cheatsheet"
+title: "stringr cheatsheet"
+subtitle: "String manipulation"
 description: " "
 image-alt: ""
 execute:
   eval: true
-  output: false
+  output: true
   warning: false
 ---
 
 ```{r}
-#| output: asis
-#| echo: false
-#| column: margin
-source("common.R")
-use_cheatsheet_logo(
-  "stringr", 
-  alt = "Hex logo for stringr - a green hexagon with a white violin in the centre, above the word 'stringr' in white.")
-sheet_name <- tools::file_path_sans_ext(knitr::current_input())
-pdf_preview_link(sheet_name)
-translation_list(sheet_name)
-```
-
-<!-- Page 1 -->
-
-The **stringr** package provides a set of internally consistent tools for working with character strings, i.e. sequences of characters surrounded by quotation marks.
-
-```{r}
 library(stringr)
-```
 
-```{r}
-#| include: false
+fruity <- c("apple", "banana", "pear", "pineapple", NA)
 see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 ```
 
+## Overview
+
+[Tidyverse::stringr](https://stringr.tidyverse.org) The stringr package is built on top of [stringi](https://github.com/gagolews/stringi), which relies on the [ICU](https://icu.unicode.org) C library to deliver efficient and accurate string manipulations. While stringr focuses on the most essential and commonly used functions, stringi offers a more extensive set of tools, covering a wider range of string operations. [pdf](https://rstudio.github.io/cheatsheets/strings.pdf)
+
+## Datasets
+
+The datasets used in the examples are: `fruit` (80 fruit names), `words` (980 words), and `sentences` (720 sentences). Run `?fruit` for documentation.
+
 ## Detect Matches
 
--   `str_detect(string, pattern, negate = FALSE)`: Detect the presence of a pattern match in a string.
-    Also `str_like()`.
+### *Arguments*
 
-    ```{r}
-    str_detect(fruit, "a")
-    ```
+`str_*(string, pattern, negate = FALSE)`
 
--   `str_starts(string, pattern, negate = FALSE)`: Detect the presence of a pattern match at the beginning of a string.
-    Also `str_ends()`.
+-   `string`: Input vector. Either character or coercible to one.
 
-    ```{r}
-    str_starts(fruit, "a")
-    ```
+-   `pattern`: Pattern to look for. See `regex` `for more information.`
 
--   `str_which(string, pattern, negate = FALSE)`: Find the indexes of strings that contain a pattern match.
+-   `negate`: If TRUE, inverts the resulting boolean vector.
 
-    ```{r}
-    str_which(fruit, "a")
-    ```
+### str_detect(), str_starts() & str_ends()
 
--   `str_locate(string, pattern)`: Locate the positions of pattern matches in a string.
-    Also `str_locate_all()`.
+`str_detect()` **returns a logical vector** with TRUE for each element of `string` that matches the pattern. It's equivalent to `grepl(pattern, string)`. Also `str_like()`
 
-    ```{r}
-    str_locate(fruit, "a")
-    ```
+`str_starts()` and `str_ends()` are special cases of `str_detect()` that only match at the beginning or end of a string, respectively.
+
+```{r, eval=FALSE}
+fruity
+# [1] "apple"     "banana"    "pear"      "pineapple"   NA 
+
+str_detect(fruity, "a")
+# [1] TRUE TRUE TRUE TRUE   NA
+
+str_detect(fruity, "^a")
+# [1]  TRUE FALSE FALSE FALSE   NA
+
+str_detect(fruity, "a$")
+# [1] FALSE  TRUE FALSE FALSE   NA
+
+str_detect(fruity, "[aeiou]")
+# [1] TRUE TRUE TRUE TRUE   NA
+
+# Also vectorised over pattern
+str_detect("aecfg", letters)
+# [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+# negate = TRUE: Returns TRUE if the pattern do NOT match
+str_detect(fruity, "^p", negate = TRUE)
+```
+
+### str_which()
+
+Returns the **indices** of `string` where there's at least one match to `pattern`. Results in an **integer vector**, usually smaller than string. It's a *wrapper* around `which(str_detect(x, pattern))`, and is equivalent to `grep(pattern, x)`.
+
+**Note on wrapper** In programming, a wrapper refers to a function that simplifies or encapsulates another function, typically to make it more user-friendly or to provide a more consistent interface. In the case of `str_which()`, this means that `str_which()` internally calls `str_detect(x, pattern)`, then applies `which()` to extract the indices where TRUE values occur.
+
+`str_which(string, pattern, negate = FALSE)`
+
+```{r, eval=FALSE}
+fruity
+# [1] "apple"     "banana"    "pear"      "pineapple"   NA 
+
+str_which(fruity, "a")
+# [1] 1 2 3 4
+
+str_which(fruity, "^b")
+# [1] 2
+
+# negate = TRUE: elements that don't match
+str_which(fruity, "^p", negate = TRUE)
+# [1] 1 2
+
+# Missings never match 
+str_which(fruity, ".") # RegEx `.` for every character except a new line
+# [1] 1 2 3 4
+
+```
+
+### str_locate() & str_locate_all()
+
+`str_locate(string, pattern)` returns a *matrix* with the **start and end** position of the **first match**. The matrix has one row for each element of string and two columns. The first column, `start`, gives the position at the start of the match, and the second column, `end`, gives the position of the end. See `stringi::stri_locate()` for the underlying implementation.
+
+```{r}
+fruity
+# [1] "apple"     "banana"    "pear"      "pineapple"   NA 
+
+str_locate(fruity, "a")
+#      start end
+# [1,]     1   1
+# [2,]     2   2
+# [3,]     3   3
+# [4,]     5   5
+# [5,]    NA  NA
+
+str_locate(fruity, c("a", "b", "p", "p"))
+# Error in `str_locate()`:
+# ! Can't recycle `string` (size 5) to match `pattern` (size 4).
+
+str_locate(fruity[!is.na(fruity)], c("a", "n", "r", "in"))
+#      start end
+# [1,]     1   1
+# [2,]     3   3
+# [3,]     4   4
+# [4,]     2   3
+
+```
+
+`str_locate_all(string, pattern)` returns the start and end position of **every match**. It *returns a list* of matrices with the same length as `string/pattern`.
+
+```{r}
+str_locate_all(fruity, "a")
+# [[1]]
+#      start end
+# [1,]     1   1
+# 
+# [[2]]
+#      start end
+# [1,]     2   2
+# [2,]     4   4
+# [3,]     6   6
+# 
+# [[3]]
+#      start end
+# [1,]     3   3
+# 
+# [[4]]
+#      start end
+# [1,]     5   5
+# 
+# [[5]]
+#      start end
+# [1,]    NA  NA
+```
+
+Because the start and end values are inclusive, **zero-length matches** (e.g. \$, \^, ⁠\\b⁠) will have an end that is smaller than `start`.
+
+The `$` regular expression (regex) anchor represents the end of a string, but it does not actually match a character—it is a zero-length match (it matches a position rather than a character). Because `$` matches a position (the point after the last character), the start and end positions appear off by one.
+
+```{r, eval=FALSE}
+str_locate(fruity, "$")
+#      start end
+# [1,]     6   5  # "apple" has length 5 → `$` is at position 6 (after "e"), so end = 5
+# [2,]     7   6  # "banana" has length 6 → `$` is at position 7 (after "a"), so end = 6
+# [3,]     5   4  # "pear" has length 4 → `$` is at position 5 (after "r"), so end = 4
+# [4,]    10   9  # "pineapple" has length 9 → `$` is at position 10 (after "e"), so end = 9
+# [5,]    NA  NA  # NA remains NA
+```
 
 -   `str_count(string, pattern)`: Count the number of matches in a string.
 
@@ -71,25 +172,127 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 
 ## Mutate Strings
 
--   `str_sub() <- value`: Replace substrings by identifying the substrings with `str_sub()` and assigning into the results.
+### str_sub()
 
-    ```{r}
-    str_sub(fruit, 1, 3) <- "str"
-    ```
+`str_sub()` **replaces** (*or **extracts** - next section*) the elements at a **SINGLE position** in each string. Returns a character vector the same length as `string`. Call `?stringi::stri_sub()` for the underlying implementation.
 
--   `str_replace(string, pattern, replacement)`: Replace the first matched pattern in each string.
-    Also `str_remove()`.
+`str_sub(string, start = 1L, end = -1L, omit_na = FALSE) <- value`
 
-    ```{r}
-    str_replace(fruit, "p", "-")
-    ```
+-   `string`: input character vector (or coercible to character).
 
--   `str_replace_all(string, pattern, replacement)`: Replace all matched patterns in each string.
-    Also `str_remove_all()`.
+-   `start`, `end`: a *pair of integers* defining the range of characters to replace/extract (inclusive).
 
-    ```{r}
-    str_replace_all(fruit, "p", "-")
-    ```
+    -   Alternatively, instead of a pair of integers, *you can pass a **matrix** to `start`*, The matrix should be similar to the output of `str_locate()` - two columns, `start` and `end`, OR `start` and **`length`**.
+
+- `omit_na`: if TRUE, NAs will result in unchanged input.
+
+- `value`: replacement string
+
+```{r}
+x <- "ABCDEF"
+
+str_sub(x, 1, 1) <- "Z"; x
+# [1] "ZBCDEF"
+
+str_sub(x, -1, -1) <- "Z"; x
+# [1] "ZBCDEZ"
+
+# Remember that `str_sub()` replaces the value of one single position. So if you try to set x back to "ABCDEF" by passing two integers to both `start` and `end`, instead of restoring x, you will end up with two new strings:
+
+str_sub(x, start = c(1,-1), end = c(1,-1)) <- c("A","F"); x
+# [1] "ABCDEZ" "ZBCDEF"  # In the output, "A" was replaced in the 1st element, and "F" in the 2nd
+
+# ----
+
+x <- "ABCDEF" # x[1] has 6 characters
+
+str_sub(x, -2, -2) <- "GHIJ"; x #replaces E with GHIJ
+# [1] "ABCDGHIJF"               # the resulting element has 9 characters
+
+str_sub(x, 5, 8) <- "E"; x
+# [1] "ABCDEF"
+
+str_sub(x, 2, -2) <- ""; x
+# [1] "AF"
+```
+
+### str_replace() & str_replace_all()
+
+str_replace() Replaces the first matched pattern in each string. str_replace_all() replaces *all* matched patterns in each string. Returns a character vector the same length as `string`. See `?stri_replace()` for the underlying implementation, and `str_replace_na()` to turn missing values into "NA".
+
+`str_replace(string, pattern, replacement)`
+
+For `str_replace_all()`, the `pattern` argument can also be a named vector `(c(pattern1 = replacement1))`, in order to perform multiple replacements in each element of string.
+
+```{r}
+fruits <- c("one apple", "two pears", "three bananas")
+
+str_replace(fruits, "[aeiou]", "-")
+# [1] "-ne apple"     "tw- pears"     "thr-e bananas"
+
+str_replace_all(fruits, "[aeiou]", "-")
+# [1] "-n- -ppl-"     "tw- p--rs"     "thr-- b-n-n-s"
+
+str_replace(fruits, "([aeiou])", "")
+# [1] "ne apple"     "tw pears"     "thre bananas"
+```
+
+Alternatively, the `replacement` argument can take a *function* or special values like `NA_character_`. If you pass a function as the replacement, str_replace_all() applies that function to the matched text in each string. With the NA_character_, if the pattern in matched in the string, str_replace() understands that "this whole string should be missing if it contains a match".
+
+```{r}
+str_replace_all(fruits, "[aeiou]", toupper)
+# [1] "OnE ApplE"     "twO pEArs"     "thrEE bAnAnAs"
+
+str_replace_all(fruits, "^.", toupper) # `^.` is a regex meaning first character of the string
+# [1] "One apple"     "Two pears"     "Three bananas"
+
+str_replace_all(fruits, "b", NA_character_)
+# [1] "one apple" "two pears" NA
+```
+
+This following code duplicates the first vowel it finds in each word.
+```{r}
+str_replace(fruits, "([aeiou])", "\\1\\1")
+# [1] "oone apple"     "twoo pears"     "threee bananas"
+```
+- Regular Expression [aeiou] captures a single vowel (a, e, i, o, u).
+- The parentheses ([aeiou]) create a *capture group*, meaning *it stores whatever matches.*
+- Replacement `\\1\\1`:
+  - \\1 refers to the first capture group (i.e., the matched vowel).
+  - \\1\\1 means "repeat the vowel twice."
+
+```{r}
+# Note that str_replace() is vectorised along text, pattern, and replacement
+str_replace(fruits, "[aeiou]", c("1", "2", "3"))
+# [1] "1ne apple"     "tw2 pears"     "thr3e bananas"
+
+str_replace(fruits, c("a", "e", "n"), "-")
+# [1] "one -pple"     "two p-ars"     "three ba-anas"
+
+
+# If you want to apply multiple patterns and replacements to the same
+# string, pass a named vector to pattern.
+fruits %>%
+  str_c(collapse = "---") %>%
+  str_replace_all(c("one" = "1", "two" = "2", "three" = "3"))
+
+# Use a function for more sophisticated replacement. This example
+# replaces colour names with their hex values.
+colours <- str_c("\\b", colors(), "\\b", collapse="|")
+col2hex <- function(col) {
+  rgb <- col2rgb(col)
+  rgb(rgb["red", ], rgb["green", ], rgb["blue", ], max = 255)
+}
+
+x <- c(
+  "Roses are red, violets are blue",
+  "My favourite colour is green"
+)
+str_replace_all(x, colours, col2hex)
+```
+
+### str_remove() 7 str_remove_all()
+
 
 -   `str_to_lower(string, locale = "en")`^1^: Convert strings to lower case.
 
@@ -103,8 +306,7 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
     str_to_upper(sentences)
     ```
 
--   `str_to_title(string, locale = "en")`^1^: Convert strings to title case.
-    Also `str_to_setence()`.
+-   `str_to_title(string, locale = "en")`^1^: Convert strings to title case. Also `str_to_setence()`.
 
     ```{r}
     str_to_title(sentences)
@@ -113,6 +315,35 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 ## Subset Strings
 
 -   `str_sub(string, start = 1L, end = -1L)`: Extract substrings from a character vector.
+
+```{r}
+hw <- "Hadley Wickham"
+
+str_sub(hw, 1, 6)
+str_sub(hw, end = 6)
+str_sub(hw, 8, 14)
+str_sub(hw, 8)
+
+# Negative indices index from end of string
+str_sub(hw, -1)
+str_sub(hw, -7)
+str_sub(hw, end = -7)
+
+# str_sub() is vectorised by both string and position
+str_sub(hw, c(1, 8), c(6, 14))
+
+# if you want to extract multiple positions from multiple strings,
+# use str_sub_all()
+x <- c("abcde", "ghifgh")
+str_sub(x, c(1, 2), c(2, 4))
+str_sub_all(x, start = c(1, 2), end = c(2, 4))
+
+# Alternatively, you can pass in a two column matrix, as in the
+# output from str_locate_all
+pos <- str_locate_all(hw, "[aeio]")[[1]]
+pos
+str_sub(hw, pos)
+```
 
     ```{r}
     str_sub(fruit, 1, 3)
@@ -125,15 +356,13 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
     str_subset(fruit, "p")
     ```
 
--   `str_extract(string, pattern)`: Return the first pattern match found in each string, as a vector.
-    Also `str_extract_all()` to return every pattern match.
+-   `str_extract(string, pattern)`: Return the first pattern match found in each string, as a vector. Also `str_extract_all()` to return every pattern match.
 
     ```{r}
     str_extract(fruit, "[aeiou]")
     ```
 
--   `str_match(string, pattern)`: Return the first pattern match found in each string, as a matrix with a column for each ( ) group in pattern.
-    Also `str_match_all()`.
+-   `str_match(string, pattern)`: Return the first pattern match found in each string, as a matrix with a column for each ( ) group in pattern. Also `str_match_all()`.
 
     ```{r}
     str_match(sentences, "(a|the) ([^ +])")
@@ -153,15 +382,13 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
     str_flatten(fruit, ", ")
     ```
 
--   `str_dup(string, times)`: Repeat strings times times.
-    Also `str_unique()` to remove duplicates.
+-   `str_dup(string, times)`: Repeat strings times times. Also `str_unique()` to remove duplicates.
 
     ```{r}
     str_dup(fruit, times = 2)
     ```
 
--   `str_split_fixed(string, pattern, n)`: Split a vector of strings into a matrix of substrings (splitting at occurrences of a pattern match).
-    Also `str_split()` to return a list of substrings and `str_split_i()` to return the ith substring.
+-   `str_split_fixed(string, pattern, n)`: Split a vector of strings into a matrix of substrings (splitting at occurrences of a pattern match). Also `str_split()` to return a list of substrings and `str_split_i()` to return the ith substring.
 
     ```{r}
     str_split_fixed(sentences, " ", n = 3)
@@ -233,8 +460,7 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
     str_conv(fruit, "ISO-8859-1")
     ```
 
--   `str_view(string, pattern, match = NA)`: View HTML rendering of all regex matches.
-    Also `str_view()` to see only the first match.
+-   `str_view(string, pattern, match = NA)`: View HTML rendering of all regex matches. Also `str_view()` to see only the first match.
 
     ```{r}
     str_view(sentences, "[aeiou]")
@@ -258,7 +484,9 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 
 ## Regular Expressions
 
-Regular expressions, or *regexps*, are a concise language for describing patterns in strings.
+The default interpretation of the `patern` argument in these functions is a regular expression, as described in `stringi::about_search_regex`. Control options with `regex()`.
+
+Regular expressions, or *regexps*, are a concise language for describing patterns in strings. The default interpretation of the `pattern` argument in the functions is a regular expression, as described in `vignette("regular-expressions")`. Use `regex()` for finer control of the matching behaviour.
 
 ### Need to Know
 
@@ -266,9 +494,7 @@ Pattern arguments in stringr are interpreted as regular expressions *after any s
 
 In R, you write regular expressions as *strings*, sequences of characters surrounded by quotes(`""`) or single quotes (`''`).
 
-Some characters cannot be directly represented in an R string.
-These must be represented as **special characters**, sequences of characters that have a specific meaning, e.g. `\\` represents `\`, `\"` represents `"`, and `\n` represents a new line.
-Run `?"'"` to see a complete list.
+Some characters cannot be directly represented in an R string. These must be represented as **special characters**, sequences of characters that have a specific meaning, e.g. `\\` represents `\`, `\"` represents `"`, and `\n` represents a new line. Run `?"'"` to see a complete list.
 
 Because of this, whenever a `\` appears in a regular expression, you must write it as `\\` in the string that represents the regular expression.
 
@@ -280,8 +506,7 @@ and `writeLines("\\ is a backslash")` will be parsed as `\ is a backslash`.
 
 ### Interpretation
 
-Patterns in stringr are interpreted as regexs.
-To change this default, wrap the pattern in one of:
+Patterns in stringr are interpreted as regexs. To change this default, wrap the pattern in one of:
 
 -   `regex(pattern, ignore_case = FALSE, multiline = FALSE, comments = FALSE, dotall = FALSE, ...)`: Modifies a regex to ignore cases, match end of lines as well as end of strings, allow R comments within regexs, and/or to have `.` match everthing including `\n`.
 
@@ -442,26 +667,26 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 
 `alt <- function(rx) str_view("abcde", rx)`
 
-+----------+--------------+-----------------+--------------------------------------+
-| regexp   | matches      | example         | example output\                      |
-|          |              |                 | (highlighted characters are in \<\>) |
-+==========+==============+=================+======================================+
-| `ab|d`   | or           | `alt("ab|d")`   | ```                                  |
-|          |              |                 | <ab>c<d>e                            |
-|          |              |                 | ```                                  |
-+----------+--------------+-----------------+--------------------------------------+
-| `[abe]`  | one of       | `alt("[abe]"`   | ```                                  |
-|          |              |                 | <a><b>cd<e>                          |
-|          |              |                 | ```                                  |
-+----------+--------------+-----------------+--------------------------------------+
-| `[^abe]` | anything but | `alt("[^abe]")` | ```                                  |
-|          |              |                 | ab<c><d>e                            |
-|          |              |                 | ```                                  |
-+----------+--------------+-----------------+--------------------------------------+
-| `[a-c]`  | range        | `alt("[a-c]")`  | ```                                  |
-|          |              |                 | <a><b><c>de                          |
-|          |              |                 | ```                                  |
-+----------+--------------+-----------------+--------------------------------------+
++------------+--------------+-----------------+--------------------------------------+
+| regexp     | matches      | example         | example output\                      |
+|            |              |                 | (highlighted characters are in \<\>) |
++============+==============+=================+======================================+
+| `ab|d`     | or           | `alt("ab|d")`   | ```                                  |
+|            |              |                 | <ab>c<d>e                            |
+|            |              |                 | ```                                  |
++------------+--------------+-----------------+--------------------------------------+
+| `[abe]`    | one of       | `alt("[abe]"`   | ```                                  |
+|            |              |                 | <a><b>cd<e>                          |
+|            |              |                 | ```                                  |
++------------+--------------+-----------------+--------------------------------------+
+| `[^abe]`   | anything but | `alt("[^abe]")` | ```                                  |
+|            |              |                 | ab<c><d>e                            |
+|            |              |                 | ```                                  |
++------------+--------------+-----------------+--------------------------------------+
+| `[a-c]`    | range        | `alt("[a-c]")`  | ```                                  |
+|            |              |                 | <a><b><c>de                          |
+|            |              |                 | ```                                  |
++------------+--------------+-----------------+--------------------------------------+
 
 : Alternates
 
@@ -484,26 +709,26 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 
 `look <- function(rx) str_view("bacad", rx)`
 
-+-----------+-----------------+-------------------+--------------------------------------+
-| regexp    | matches         | example           | example output\                      |
-|           |                 |                   | (highlighted characters are in \<\>) |
-+===========+=================+===================+======================================+
-| `a(?=c)`  | followed by     | `look("a(?=c)")`  | ```                                  |
-|           |                 |                   | b<a>cad                              |
-|           |                 |                   | ```                                  |
-+-----------+-----------------+-------------------+--------------------------------------+
-| `a(?!c)`  | not followed by | `look("a(?!c)")`  | ```                                  |
-|           |                 |                   | bac<a>d                              |
-|           |                 |                   | ```                                  |
-+-----------+-----------------+-------------------+--------------------------------------+
-| `(?<=b)a` | preceded by     | `look("(?<=b)a")` | ```                                  |
-|           |                 |                   | b<a>cad                              |
-|           |                 |                   | ```                                  |
-+-----------+-----------------+-------------------+--------------------------------------+
-| `(?<!b)a` | not preceded by | `look("(?<!b)a")` | ```                                  |
-|           |                 |                   | bac<a>d                              |
-|           |                 |                   | ```                                  |
-+-----------+-----------------+-------------------+--------------------------------------+
++-------------+-----------------+-------------------+--------------------------------------+
+| regexp      | matches         | example           | example output\                      |
+|             |                 |                   | (highlighted characters are in \<\>) |
++=============+=================+===================+======================================+
+| `a(?=c)`    | followed by     | `look("a(?=c)")`  | ```                                  |
+|             |                 |                   | b<a>cad                              |
+|             |                 |                   | ```                                  |
++-------------+-----------------+-------------------+--------------------------------------+
+| `a(?!c)`    | not followed by | `look("a(?!c)")`  | ```                                  |
+|             |                 |                   | bac<a>d                              |
+|             |                 |                   | ```                                  |
++-------------+-----------------+-------------------+--------------------------------------+
+| `(?<=b)a`   | preceded by     | `look("(?<=b)a")` | ```                                  |
+|             |                 |                   | b<a>cad                              |
+|             |                 |                   | ```                                  |
++-------------+-----------------+-------------------+--------------------------------------+
+| `(?<!b)a`   | not preceded by | `look("(?<!b)a")` | ```                                  |
+|             |                 |                   | bac<a>d                              |
+|             |                 |                   | ```                                  |
++-------------+-----------------+-------------------+--------------------------------------+
 
 : Look arounds
 
@@ -511,34 +736,34 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 
 `quant <- function(rx) str_view(".a.aa.aaa", rx)`
 
-+-----------+---------------------+-------------------+--------------------------------------+
-| regexp    | matches             | example           | example output\                      |
-|           |                     |                   | (highlighted characters are in \<\>) |
-+===========+=====================+===================+======================================+
-| `a?`      | zero or one         | `quant("a?")`     | ```                                  |
-|           |                     |                   | <>.<a><>.<a><a><>.<a><a><a><>        |
-|           |                     |                   | ```                                  |
-+-----------+---------------------+-------------------+--------------------------------------+
-| `a*`      | zero or more        | `quant("a*")`     | ```                                  |
-|           |                     |                   | <>.<a><>.<aa><>.<aaa><>              |
-|           |                     |                   | ```                                  |
-+-----------+---------------------+-------------------+--------------------------------------+
-| `a+`      | one or more         | `quant("a+")`     | ```                                  |
-|           |                     |                   | .<a>.<aa>.<aaa>                      |
-|           |                     |                   | ```                                  |
-+-----------+---------------------+-------------------+--------------------------------------+
-| `a{n}`    | exactly `n`         | `quant("a{2}")`   | ```                                  |
-|           |                     |                   | .a.<aa>.<aa>a                        |
-|           |                     |                   | ```                                  |
-+-----------+---------------------+-------------------+--------------------------------------+
-| `a{n, }`  | `n` or more         | `quant("a{2,}")`  | ```                                  |
-|           |                     |                   | .a.<aa>.<aaa>                        |
-|           |                     |                   | ```                                  |
-+-----------+---------------------+-------------------+--------------------------------------+
-| `a{n, m}` | between `n` and `m` | `quant("a{2,4}")` | ```                                  |
-|           |                     |                   | .a.<aa>.<aaa>                        |
-|           |                     |                   | ```                                  |
-+-----------+---------------------+-------------------+--------------------------------------+
++-------------+---------------------+-------------------+--------------------------------------+
+| regexp      | matches             | example           | example output\                      |
+|             |                     |                   | (highlighted characters are in \<\>) |
++=============+=====================+===================+======================================+
+| `a?`        | zero or one         | `quant("a?")`     | ```                                  |
+|             |                     |                   | <>.<a><>.<a><a><>.<a><a><a><>        |
+|             |                     |                   | ```                                  |
++-------------+---------------------+-------------------+--------------------------------------+
+| `a*`        | zero or more        | `quant("a*")`     | ```                                  |
+|             |                     |                   | <>.<a><>.<aa><>.<aaa><>              |
+|             |                     |                   | ```                                  |
++-------------+---------------------+-------------------+--------------------------------------+
+| `a+`        | one or more         | `quant("a+")`     | ```                                  |
+|             |                     |                   | .<a>.<aa>.<aaa>                      |
+|             |                     |                   | ```                                  |
++-------------+---------------------+-------------------+--------------------------------------+
+| `a{n}`      | exactly `n`         | `quant("a{2}")`   | ```                                  |
+|             |                     |                   | .a.<aa>.<aa>a                        |
+|             |                     |                   | ```                                  |
++-------------+---------------------+-------------------+--------------------------------------+
+| `a{n, }`    | `n` or more         | `quant("a{2,}")`  | ```                                  |
+|             |                     |                   | .a.<aa>.<aaa>                        |
+|             |                     |                   | ```                                  |
++-------------+---------------------+-------------------+--------------------------------------+
+| `a{n, m}`   | between `n` and `m` | `quant("a{2,4}")` | ```                                  |
+|             |                     |                   | .a.<aa>.<aaa>                        |
+|             |                     |                   | ```                                  |
++-------------+---------------------+-------------------+--------------------------------------+
 
 : Quantifiers
 
@@ -548,19 +773,18 @@ see <- function(rx) str_view("abc ABC 123\t.!?\\(){}\n", rx)
 
 Use parentheses to set precedent (order of evaluation) and create groups
 
-+-----------+-----------------+------------------+--------------------------------------+
-| regexp    | matches         | example          | example output\                      |
-|           |                 |                  | (highlighted characters are in \<\>) |
-+===========+=================+==================+======================================+
-| `(ab|d)e` | sets precedence | `alt("(ab|d)e")` | ```                                  |
-|           |                 |                  | abc<de>                              |
-|           |                 |                  | ```                                  |
-+-----------+-----------------+------------------+--------------------------------------+
++-------------+-----------------+------------------+--------------------------------------+
+| regexp      | matches         | example          | example output\                      |
+|             |                 |                  | (highlighted characters are in \<\>) |
++=============+=================+==================+======================================+
+| `(ab|d)e`   | sets precedence | `alt("(ab|d)e")` | ```                                  |
+|             |                 |                  | abc<de>                              |
+|             |                 |                  | ```                                  |
++-------------+-----------------+------------------+--------------------------------------+
 
 : Groups
 
-Use an escaped number to refer to and duplicate parentheses groups that occur earlier in a pattern.
-Refer to each group by its order of appearance
+Use an escaped number to refer to and duplicate parentheses groups that occur earlier in a pattern. Refer to each group by its order of appearance
 
 +-------------+----------------+----------------------+-------------------------------------------+--------------------------------------+
 | string\     | regexp\        | matches\             | example\                                  | example output\                      |

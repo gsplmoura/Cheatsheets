@@ -1,29 +1,56 @@
 ---
-title: "Data visualization with ggplot2 :: Cheat Sheet"
-description: " "
+title: "Data visualization with ggplot2 Cheat Sheet"
+description: "Compilation of ggplot2 cheat sheet resources"
+author: Gustavo Santos Paiva Laender Moura
+date: today
 execute:
   eval: true
-  output: false
+  echo: true
+  output: true
   warning: false
+  message: false
 ---
+![](https://rstudio.github.io/cheatsheets/html/images/logo-ggplot2.png)
 
-```{r}
-#| output: asis
-#| echo: false
-#| column: margin
-
-source("common.R")
-use_cheatsheet_logo(
-  "ggplot2", 
-  alt = "Hex logo for ggplot2 - Six points following an overall increasing trend filled with colors going from light blue to dark blue, connected with a black line, on a light gray background with white grid lines."
-)
-
-sheet_name <- tools::file_path_sans_ext(knitr::current_input())
-pdf_preview_link(sheet_name)
-translation_list(sheet_name)
+```{r, message=FALSE}
+library(ggplot2)
 ```
 
-<!-- Page 1 -->
+# Overview
+- Run `?ggplot2` for author information. ggplot2 is a system for 'declaratively' creating graphics, based on "The Grammar of Graphics". You provide the data, tell 'ggplot2' how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
+
+- For package documentation, run `help(package = "ggplot2")`
+
+- Need help getting started? Try the [R Graphics Cookbook](https://r-graphics.org)
+
+- [Tidyverse::ggplot2](https://ggplot2.tidyverse.org) 
+
+- [Github](https://github.com/tidyverse/ggplot2)
+
+- [Cheat sheet](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
+
+- [Cheat sheet pdf](https://rstudio.github.io/cheatsheets/data-visualization.pdf)
+
+- Run `??ggplot2` for broader search
+
+- For an html helper page on your browser, run,,
+```{r}
+help.start()
+browseVignettes("ggplot2")
+```
+
+
+
+Index
+
+```{r, eval=FALSE}
+?ggplot2
+??ggplot2
+```
+
+## Datasets
+
+The datasets used in the examples are: `fruit` (80 fruit names), `words` (980 words), and `sentences` (720 sentences). Run `?fruit` for documentation.
 
 ## Basics
 
