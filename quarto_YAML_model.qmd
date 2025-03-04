@@ -1,0 +1,120 @@
+---
+# Document Metadata
+title: ""
+#subtitle: ""
+#description: ""
+author: 
+  - name: "**Gustavo Santos Paiva Laender Moura**"
+    affiliation: "University of São Paulo, Ribeirão Preto Medical School, Department of Internal Medicine"
+    email: "gsplmoura@usp.br" # Email (optional)
+date: today
+
+# Execution Options (Controls Code Execution)
+execute:
+  eval: true  # Enable/disable code execution
+  echo: true  # Show code in output
+  output: true  # Show output of the code
+  warning: false  # Hide warnings in output
+  message: false  # Hide messages in output
+  error: false  # Stop execution on errors (use true to continue)
+  cache: true  # Cache results to speed up re-execution
+  freeze: auto  # Auto-freeze execution for reproducibility
+  fig-width: 7  # Default figure width (in inches)
+  fig-height: 5  # Default figure height (in inches)
+  dpi: 300  # Default resolution for figures
+  fig-format: png  # Format for output figures (png, svg, etc.)
+
+# Formatting Options for Output
+format: 
+  html:  # Options for HTML output
+    theme: flatly # Theme (e.g., cosmo, darkly, journal, lumen, etc.)
+    toc: true  # Include a table of contents
+    toc-depth: 5  # Maximum depth of TOC levels
+    toc-location: left  # TOC placement (left, right, floating)
+    number-sections: true  # Number section headings
+    highlight-style: github  # Syntax highlighting style
+    code-fold: false  # Whether to fold code by default
+    smooth-scroll: true  # Enable smooth scrolling
+    css: "styles.css"  # Custom CSS file
+    include-before-body: "header.html"  # Custom HTML to include before body
+    include-after-body: "footer.html"  # Custom HTML to include after body
+    citations-hover: true  # Show citations as tooltips
+    reference-location: margin  # Show references in margin
+
+  pdf: # Options for PDF output
+    documentclass: article  # LaTeX document class (e.g., report, book)
+    toc: true  # Include a table of contents
+    toc-depth: 4  # Maximum depth of TOC levels
+    number-sections: true  # Number section headings
+    keep-tex: true  # Keep intermediate .tex file
+    fig-pos: "H"  # Position of figures (use "H" for strict placement)
+
+  docx:  # Options for Microsoft Word output
+    reference-doc: "template.docx"  # Custom Word template
+    number-sections: true  # Number section headings
+
+  markdown:  # Options for Markdown output
+    variant: gfm  # GitHub-flavored markdown
+    preserve-yaml: true  # Preserve YAML metadata in output
+
+# Language Settings
+lang: en  # Document language (e.g., en, pt-BR)
+lang-title: "Title"  # Custom translation for "Title"
+lang-abstract: "Abstract"  # Custom translation for "Abstract"
+
+# Citations and References
+bibliography: references.bib  # Citation file (BibTeX, CSL JSON, etc.)
+csl: apa.csl  # Citation style (APA, Vancouver, etc.)
+link-citations: true  # Link citations to bibliography
+link-bibliography: true  # Make bibliography links clickable
+
+# Code Block Defaults
+knitr:
+  opts_chunk:
+    dev: "png"  # Default figure format
+    fig.align: "center"  # Align figures in the center
+    fig.width: 6  # Default width for figures
+    fig.height: 4  # Default height for figures
+
+# Cross-referencing
+crossref:
+  fig-prefix: "Figure"  # Prefix for figures
+  tbl-prefix: "Table"  # Prefix for tables
+  eq-prefix: "Equation"  # Prefix for equations
+
+# Quarto Extensions
+filters:
+  - citations  # Enable citation filtering
+  - crossref  # Enable cross-referencing
+  - knitr  # Enable knitr processing
+
+# License Information
+license: "CC BY 4.0"  # Specify a Creative Commons license
+
+# Custom Variables
+params:
+  data_source: "dataset.csv"  # Custom parameter for dataset
+  analysis_type: "regression"  # Custom parameter for analysis type
+
+# Output Directory
+output-dir: "outputs"  # Where to store output files
+
+# Other Metadata
+site: "https://your-website.com"  # Link to website if part of a larger site
+project:
+  type: book  # Can be "article", "book", or "website"
+  output-dir: "docs"  # Specify where output should be stored
+---
+
+This is "the most" comprehensive Quarto (.qmd) YAML header with detailed comments explaining each element. This includes settings for execution, formatting, metadata, and output options.
+
+
+📌 Key Takeaways
+	•	This YAML header is highly customizable and covers various output formats (HTML, PDF, Word, Markdown).
+	•	Execution settings control how code is run and whether warnings, messages, and errors appear.
+	•	Format settings define the appearance and behavior of the output, such as themes, TOC levels, and section numbering.
+	•	Citations & references are configured using bibliography and csl.
+	•	Language support allows localization with lang, lang-title, etc.
+	•	Custom parameters (params) let you define values that can be referenced throughout your document.
+
+This setup ensures maximum flexibility for Quarto documents! 🚀 Let me know if you need any modifications!

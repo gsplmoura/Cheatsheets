@@ -27,6 +27,7 @@ pdf_preview_link(sheet_name)
 translation_list(sheet_name)
 ```
 
+# Quarto RStudio cheatsheet
 ## Overview
 
 ![](images/quarto-illustration.png){fig-alt="A schematic representing the multi-language input (e.g. Python, R, Observable, Julia) and multi-format output (e.g. PDF, html, Word documents, and more) versatility of Quarto."}[^1]
@@ -591,3 +592,124 @@ Quarto 1.4
 Updated: `r format(Sys.Date(), "%Y-%m")`.
 
 ------------------------------------------------------------------------
+
+
+# My inputs
+
+## Default YAML template in RStudio
+You can set up a default YAML template for every new .qmd file you create in RStudio by configuring Quarto’s global settings. Here’s how you can do it:
+
+### Method 1: Create a Global _quarto.yml File
+
+You can define a global Quarto configuration file that applies default settings to all .qmd files in a Quarto project or even globally for all documents.
+
+Steps:
+	1.	Create a _quarto.yml file in your home directory (for global settings) or in the root of your project (for project-specific settings).
+	2.	Add the following configuration:
+
+---
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 5
+    number-sections: true
+    highlight-style: github
+    smooth-scroll: true
+  pdf:
+    documentclass: article
+    toc: true
+    toc-depth: 4
+    number-sections: true
+    keep-tex: true
+  docx:
+    reference-doc: "template.docx"
+    number-sections: true
+execute:
+  eval: true
+  echo: true
+  output: true
+  warning: false
+  message: false
+  error: false
+editor: visual
+bibliography: references.bib
+license: "CC BY 4.0"
+project:
+  type: article  # Change to "book" or "website" if needed
+output-dir: "outputs"
+
+---
+
+
+	3.	Save _quarto.yml in:
+	•	Global (for all Quarto projects): Save it in your Quarto home directory (~/.quarto/)
+	•	Project-specific: Save it in the root of your project.
+
+### Method 2: Use an RStudio Template for New .qmd Files
+
+You can create a custom Quarto template in RStudio so that every time you create a new .qmd file, it uses your predefined YAML.
+
+Steps:
+	1.	Go to the Quarto templates directory:
+	•	On macOS/Linux:
+
+~/.config/quarto/templates/
+
+
+	•	On Windows:
+
+C:\Users\YourUsername\AppData\Roaming\quarto\templates\
+
+
+	2.	Create a new template folder, e.g., mydefaulttemplate.
+	3.	Inside this folder, create:
+	•	A metadata file: _metadata.yml
+	•	A default Quarto document: template.qmd
+	4.	In _metadata.yml, define:
+
+---
+title: "Untitled Document"
+author: "Your Name"
+date: today
+format: 
+  html:
+    toc: true
+    toc-depth: 5
+    theme: flatly
+execute:
+  eval: true
+
+---
+
+
+	5.	In template.qmd, add:
+
+---
+title: "New Quarto Document"
+author: "Your Name"
+date: today
+format: html
+toc: true
+toc-depth: 5
+
+---
+
+Introduction
+This is a new Quarto document.
+
+
+	6.	Use it in RStudio:
+	•	When creating a new Quarto document in RStudio (File > New File > Quarto Document), you should see your custom template in the Templates tab.
+
+Method 3: Set Default YAML in RStudio Quarto Options
+	1.	Open RStudio and go to:
+	•	Tools > Global Options > Quarto
+	2.	Find the Editor Defaults section and configure a default template with your preferred YAML.
+
+Final Notes
+	•	If you want global defaults, the _quarto.yml file in ~/.quarto/ is the best option.
+	•	If you want project-specific defaults, use _quarto.yml in the project root.
+	•	If you want a custom starting template, set up a template in RStudio.
+
+This setup ensures every new Quarto file starts with your preferred defaults, saving you time! 🚀
