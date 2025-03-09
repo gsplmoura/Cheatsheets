@@ -21,14 +21,15 @@ format:
       number-sections: false
 ---
 
+# Overview
+
 ![](https://rstudio.github.io/cheatsheets/html/images/logo-ggplot2.png)
 
 ```{r, message=FALSE}
 library(tidyverse)
 library(skimr)
+library(gridExtra)
 ```
-
-# Overview
 
 -   Run `?ggplot2` for author information. ggplot2 is a system for 'declaratively' creating graphics, based on "The Grammar of Graphics". You provide the data, tell 'ggplot2' how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.
 
@@ -107,7 +108,7 @@ skimr::skim(economics)
 Vector field data of seal movements. A data frame with 1155 rows and 4 variables. This dataset is likely used for visualizing seal movement patterns over time, possibly using vector field plots. The delta_long and delta_lat columns indicate how far a seal has moved from one observation to the next.
 
 | vars. | **Description** |
-|----------------------|--------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | lat | (latitude): The geographical latitude where the seal was recorded |
 | long | (longitude): The geographical longitude where the seal was recorded |
 | delta_long | Change in longitude between consecutive observations, representing movement |
@@ -297,12 +298,11 @@ ggplot(data = economics) +
 
 ### Connecting observations
 
-geom_path() connects the observations in the order in which they appear in the data. geom_line() connects them in order of the variable on the x axis. geom_step() creates a stairstep plot, highlighting exactly when changes occur. 
+geom_path() connects the observations in the order in which they appear in the data. geom_line() connects them in order of the variable on the x axis. geom_step() creates a stairstep plot, highlighting exactly when changes occur.
 
-geom_polygon(): Polygons are very similar to paths (as drawn by geom_path()) except that the start and end points are connected and the inside is coloured by fill. 
+geom_polygon(): Polygons are very similar to paths (as drawn by geom_path()) except that the start and end points are connected and the inside is coloured by fill.
 
 So use geom_path() for an unfilled polygon, geom_polygon() for a filled polygon and geom_ribbon() for a polygon anchored on the x-axis.
-
 
 #### geom_path()
 
@@ -372,7 +372,7 @@ It is possible to draw polygons with holes by providing a subgroup aesthetic tha
 
 `aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `group`, `subgroup`, `linetype`, `size`.
 
-- relevant: `fill`, `subgroup`
+-   relevant: `fill`, `subgroup`
 
 ```         
 geom_polygon(
@@ -400,11 +400,11 @@ ggplot(data = economics) +
 
 #### geom_ribbon() & geom_area()
 
-For each x value, `geom_ribbon()` displays a y interval defined by `ymin` and `ymax`. 
+For each x value, `geom_ribbon()` displays a y interval defined by `ymin` and `ymax`.
 
 `aes()` arguments: `x`, `ymin`, `ymax`, `alpha`, `color`, `fill`, `group`, `linetype`, `size`.
 
-- relevant: `ymin`, `ymax`, `outline.type`
+-   relevant: `ymin`, `ymax`, `outline.type`
 
 `geom_area()` is a special case of geom_ribbon(), where the *`ymin` is fixed to 0 and y is used instead of ymax*.
 
@@ -474,8 +474,8 @@ ggplot(data = mtcars) +
 
 ```
 
-
 **SEAL DATASET**
+
 ```{r}
 seal_lat <- ggplot(data = seals, aes(x = long, y = lat))
     # x = long        <dbl>                   Geographical longitude where the seal was recorded
@@ -488,7 +488,7 @@ seal_lat + geom_point()
 
 #### geom_segment() & geom_curve()
 
-`geom_segment()` draws a straight line from `(x, y)` to `(xend, yend)`. 
+`geom_segment()` draws a straight line from `(x, y)` to `(xend, yend)`.
 
 `geom_curve()` draws a curved line from `(x, y)` to `(xend, yend)`. See the underlying drawing function `grid::curveGrob()` for the parameters that control the curve. `aes()` arguments: `x`, `xend`, `y`, `yend`, `alpha`, `angle`, `color`, `curvature`, `linetype`, `size`.
 
@@ -513,6 +513,7 @@ wt_mpg +
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2, colour = "segment"), data = os_curve)
 
 ```
+
 #### geom_spoke()
 
 geom_spoke() is a polar parameterisation of geom_segment(). It is useful when you have variables that describe direction and distance. The angles start from east and increase counterclockwise.
@@ -525,12 +526,11 @@ seal_lat + geom_spoke(aes(angle = 1:1155, radius = 1)) # Draw line segments usin
 
 #### geom_rect()
 
--   ``: Draw a rectangle by connecting four corners (`xmin`, `xmax`, `ymin`, `ymax`). `aes()` arguments: `xmax`, `xmin`, `ymax`, `ymin`, `alpha`, `color`, `fill`, `linetype`, `size`.
+-   \``: Draw a rectangle by connecting four corners (`xmin`,`xmax`,`ymin`,`ymax`).`aes()`arguments:`xmax`,`xmin`,`ymax`,`ymin`,`alpha`,`color`,`fill`,`linetype`,`size\`.
 
 ```{r}
 seal_lat + geom_rect(aes(xmin = long, ymin = lat, xmax = long + 1, ymax = lat + 1))
 ```
-
 
 ### Reference lines: horizontal, vertical, and diagonal
 
@@ -539,6 +539,7 @@ These geoms add reference lines (sometimes called rules) to a plot, either horiz
 Common aesthetics: `x`, `y`, `alpha`, `color`, `linetype`, `size`, `linewidth`.
 
 #### geom_abline()
+
 Draw a diagonal reference line with a given `slope` and `intercept`.
 
 ```{r}
@@ -546,6 +547,7 @@ ggplot() + geom_abline(aes(intercept = 0, slope = 1)) # Draw a diagonal referenc
 ```
 
 #### geom_hline()
+
 Draw a horizontal reference line with a given `yintercept`.
 
 ```{r}
@@ -553,6 +555,7 @@ seal_lat + geom_hline(aes(yintercept = lat)) # Draw a horizontal reference line 
 ```
 
 #### geom_vline()
+
 Draw a vertical reference line with a given `xintercept`.
 
 ```{r}
@@ -573,51 +576,141 @@ hwy
 
 ### geom_area()
 
-Draw an area plot. `aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `linetype`, `linewidth`.
+Draw an area plot.
+
+`aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `linetype`, `linewidth`.
 
 ```{r}
-hwy + geom_area(stat = "bin")
+ggplot(data = mpg, aes(hwy)) + geom_area(stat = "bin")
 ```
 
 ### geom_density()
 
-Compute and draw kernel density estimates. `aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `group`, `linetype`, `linewidth`, `weight`.
+`?geom_density()` Computes and draws *kernel* density estimate, which is a smoothed version of the histogram. This is a useful alternative to the histogram for continuous data that comes from an underlying smooth distribution.
+
+The term *kernel* refers to the smoothing function used in *Kernel Density Estimation (KDE)*. KDE is a method for estimating the *probability density function (PDF)* of a continuous random variable. It provides a smooth estimate of the distribution of the data, as opposed to a histogram, which is more discrete. The kernel function determines the shape of the weighting function applied to each data point.
+
+See `?density` for a list of available kernels: *"gaussian", "epanechnikov", "rectangular", "triangular", "biweight", "cosine", "optcosine"*. Defaults to "gaussian". The "gaussian" kernel means that each data point contributes to the density estimate with a weight given by the Gaussian function (a normal distribution curve centered on each point). The bandwidth (which controls the amount of smoothing) is also crucial and can be adjusted with the `bw` argument.
+
+`aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `group`, `linetype`, `linewidth`, `weight`.
 
 ```{r}
-hwy + geom_density(kernel = "gaussian")
+ggplot(data = mpg, aes(hwy)) + geom_density(kernel = "gaussian")
 ```
+
+See output of different kernels:
+
+```{r}
+gaussian <- ggplot(data = mpg, aes(hwy)) + geom_density(kernel = "gaussian") + 
+  ggtitle("Gaussian Kernel")
+
+epanechnikov <- ggplot(data = mpg, aes(hwy)) + geom_density(kernel = "epanechnikov") + 
+  ggtitle("Epanechnikov Kernel")
+
+rectangular <- ggplot(data = mpg, aes(hwy)) + geom_density(kernel = "rectangular") + 
+  ggtitle("Rectangular Kernel")
+
+triangular <- ggplot(data = mpg, aes(hwy)) + geom_density(kernel = "triangular") + 
+  ggtitle("Triangular Kernel")
+
+# Arrange in a 2×2 grid
+grid.arrange(gaussian, epanechnikov, rectangular, triangular, nrow = 2, ncol = 2)
+```
+
+### geom_dotplot()
+
+`?geom_dotplot()` draws a dot plot. In a dot plot, the width of a dot corresponds to the bin width (or maximum width, depending on the binning algorithm), and dots are stacked, with each dot representing one observation.
+
+`aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`.
+
+```{r}
+ggplot(data = mpg, aes(hwy)) + geom_dotplot()
+```
+
+### geom_qq()
+
+`?geom_qq()` draws a quantile-quantile plot. 
+
+`geom_qq()` and `stat_qq()` produce quantile-quantile plots. `geom_qq_line()` and `stat_qq_line()` compute the slope and intercept of the line connecting the points at specified quartiles of the theoretical and sample distributions.
+
+`aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `linetype`, `size`, `weight`.
 
 
 ```{r}
-hwy + geom_dotplot()
+ggplot(mpg) + 
+  geom_qq(aes(sample = hwy)) + 
+  geom_qq_line(aes(sample = hwy))
 ```
-Draw a dot plot. `aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`.
 
+### Histograms and frequency polygons
+
+Visualise the distribution of a single continuous variable by *dividing the x axis into bins* and counting the number of observations in each bin. Histograms display the counts with bars and frequency polygons display the counts with lines. 
+
+#### geom_freqpoly()
+
+`?geom_freqpoly()` draws a frequency polygon. 
+
+*Frequency polygons are more suitable when you want to compare the distribution across the levels of a categorical variable* (rather than stacking histograms)
+
+`aes()` arguments: `x`, `y`, `alpha`, `color`, `group`, `linetype`, `linewidth`.
 
 ```{r}
-hwy + geom_freqpoly()
+ggplot(data = mpg, aes(hwy, colour = fl)) + geom_freqpoly()
 ```
-Draw a frequency polygon. `aes()` arguments: `x`, `y`, `alpha`, `color`, `group`, `linetype`, `linewidth`.
 
+#### geom_histogram()
 
-```{r}
-hwy + geom_histogram(binwidth = 5)
-```
 Draw a histogram. `aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `linetype`, `linewidth`, `weight`.
 
-
 ```{r}
-ggplot(mpg) + geom_qq(aes(sample = hwy))
+ggplot(data = mpg, aes(hwy)) + geom_histogram(binwidth = 5)
 ```
-Draw a quantile-quantile plot. `aes()` arguments: `x`, `y`, `alpha`, `color`, `fill`, `linetype`, `size`, `weight`.
+
+Note that `binwidth` greatly affects the result
+```{r}
+histogram_1 <- ggplot(data = mpg, aes(hwy)) + geom_histogram(binwidth = 1) + 
+  ggtitle("Binwidth = 1")
+
+histogram_2 <- ggplot(data = mpg, aes(hwy)) + geom_histogram(binwidth = 2) + 
+  ggtitle("Binwidth = 2")
+
+histogram_3 <- ggplot(data = mpg, aes(hwy)) + geom_histogram(binwidth = 3) + 
+  ggtitle("Binwidth = 3")
+
+histogram_5 <- ggplot(data = mpg, aes(hwy)) + geom_histogram(binwidth = 5) + 
+  ggtitle("Binwidth = 5")
+
+# Arrange in a 2×2 grid
+grid.arrange(histogram_1, histogram_2, histogram_3, histogram_5, nrow = 2, ncol = 2)
+```
 
 ## Discrete
 
+### geom_bar()
+
+`?geom_bar()` draws a bar chart. 
+
+`aes()` arguments: `x`, `alpha`, `color`, `fill`, `linetype`, `linewidth`, `weight`.
+
 ```{r}
-d <- ggplot(mpg, aes(fl))
+ggplot(data = mpg, aes(fl)) + # Fuel type
+  geom_bar()
 ```
 
--   `d + geom_bar()`: Draw a bar chart. `aes()` arguments: `x`, `alpha`, `color`, `fill`, `linetype`, `linewidth`, `weight`.
+There are two types of bar charts: `geom_bar()` and `geom_col()`:
+
+**geom_bar():**
+
+- geom_bar() makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). 
+- geom_bar() automatically counts the occurrences of each category. So, it internally creates a `y = count variable`. geom_bar() uses stat_count() by default: it counts the number of cases at each x position.
+
+
+**geom_col():**
+
+- If you want the heights of the bars to represent values in the data. 
+- geom_col() requires y explicitly. Unlike geom_bar(), it does not count occurrences automatically.
+- geom_col() uses stat_identity(): it leaves the data as is.
+- *use with pre-summarized data (e.g., counts, averages)*
 
 # Two Variables
 
@@ -794,7 +887,7 @@ Override defaults with **scales** package.
 **Scales** map data values to the visual values of an aesthetic. To change a mapping, add a new scale.
 
 ```{r}
-n <- d + geom_bar(aes(fill = fl))
+n <- ggplot(mpg, aes(fl)) + geom_bar(aes(fill = fl))
 
 n + scale_fill_manual(
   values = c("skyblue", "royalblue", "blue", "navy"),
@@ -845,8 +938,8 @@ Use with x or y aesthetics (x shown here).
 
 ### Color and Fill Scales (Continuous)
 
-```{r}
-o <- hwy geom_dotplot(aes(fill = ..x..))
+```{r, eval}
+o <- ggplot(data = mpg, aes(hwy)) + geom_dotplot(aes(fill = ..x..))
 ```
 
 -   `o + scale_fill_distiller(palette = "Blues")`: Interpolate a palette into a continuous scale.
@@ -876,7 +969,7 @@ Shapes used here are the same as the ones listed in the Aes section.
 # Coordinate Systems
 
 ```{r}
-u <- d + geom_bar()
+u <- ggplot(mpg, aes(fl)) + geom_bar()
 ```
 
 -   `u + coord_cartesian(xlim = c(0, 5))`: `xlim`, `ylim`. The default Cartesian coordinate system.

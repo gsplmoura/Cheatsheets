@@ -1,0 +1,365 @@
+---
+title: "Rstudio_K_S"
+format: html
+editor: 
+  markdown:
+    wrap: 100
+---
+
+# Accessibility
+
+| Accessibility                     | Shortcut     |
+|-----------------------------------|--------------|
+| Toggle Screen Reader Support      | \^↑U         |
+| Speak Text Editor Location        | \^⌥1         |
+| Focus Console Output              | \^\` or \^⌥2 |
+| Toggle Tab Key Always Moves Focus | \^⌥          |
+| Focus Next Pane                   | F6           |
+| Focus Previous Pane               | ↑F6          |
+| Focus Main Toolbar                | \^⌥Y         |
+
+# Console
+
+| Console                          | Shortcut |
+|----------------------------------|----------|
+| Move cursor to Console           | \^2      |
+| Clear console                    | \^L      |
+| Move cursor to beginning of line | ⌘Left    |
+| Move cursor to end of line       | ⌘Right   |
+| Navigate ⌘ history               | Up/Down  |
+| Popup ⌘ history                  | ⌘Up      |
+| Interrupt currently executing ⌘  | Esc      |
+| Change working directory         | \^↑H     |
+
+# Source
+
+| Source                                              | Shortcut            |
+|-----------------------------------------------------|---------------------|
+| Go to File/Function                                 | \^ period           |
+| Move cursor to Source Editor                        | \^1                 |
+| Toggle document outline                             | ↑⌘O                 |
+| Toggle visual markdown editor                       | \^↑F4               |
+| New document (except on Chrome/Windows)             | ↑⌘N                 |
+| New document (Chrome only)                          | ⌥↑⌘N                |
+| Open document                                       | ⌘O                  |
+| Save active document                                | ⌘S                  |
+| Save all documents                                  | ⌘⌥S                 |
+| Close active document (except on Chrome)            | ⌘W                  |
+| Close active document (Chrome only)                 | ⌥⌘W                 |
+| Close all open documents                            | ↑⌘W                 |
+| Close other documents                               | ⌥↑⌘W                |
+| Preview HTML (Markdown and HTML)                    | ↑⌘K                 |
+| Knit Document (knitr)                               | ↑⌘K                 |
+| Compile Notebook                                    | ↑⌘K                 |
+| Compile PDF (TeX and Sweave)                        | ↑⌘K                 |
+| Insert chunk (Sweave and Knitr)                     | ⌥⌘I                 |
+| Insert code section                                 | ↑⌘R or \^↑R         |
+| Run current line/selection                          | ⌘⏎                  |
+| Run current line/selection (retain cursor position) | ⌥⏎                  |
+| Re-run previous region                              | ⌥⌘P                 |
+| Run current document                                | ⌥⌘R                 |
+| Run from document beginning to current line         | ⌥⌘B                 |
+| Run from current line to document end               | ⌥⌘E                 |
+| Run the current function definition                 | ⌥⌘F                 |
+| Run the current code section                        | ⌥⌘T                 |
+| Run previous Sweave/Rmd code                        | ⌥↑⌘P                |
+| Run the current Sweave/Rmd chunk                    | ⌥⌘C                 |
+| Run the next Sweave/Rmd chunk                       | ⌥⌘N                 |
+| Source a file                                       | \^⌥G                |
+| Source the current document                         | ↑⌘S                 |
+| Source the current document (with echo)             | ↑⌘⏎                 |
+| Send current line/selection to terminal             | ⌥⌘⏎                 |
+| Fold Selected                                       | ⌥⌘L                 |
+| Unfold Selected                                     | ⌥↑⌘L                |
+| Fold All                                            | ⌥⌘O                 |
+| Unfold All                                          | ⌥↑⌘O                |
+| Go to line                                          | ⌥↑⌘G                |
+| Jump to                                             | ⌥↑⌘J                |
+| Expand selection                                    | \^⌥↑Up              |
+| Shrink selection                                    | \^⌥↑Down            |
+| Next section                                        | ⌘PageDown           |
+| Previous section                                    | ⌘PageUp             |
+| Split into lines                                    | \^⌥A                |
+| Edit lines from start                               | \^⌥↑A               |
+| Switch to tab                                       | \^↑ period          |
+| Previous tab                                        | \^F11 or \^⌥Left    |
+| Previous tab (desktop only)                         | \^↑Tab              |
+| Next tab                                            | \^F12 or \^⌥Right   |
+| Next tab (desktop only)                             | \^Tab               |
+| First tab                                           | \^↑F11 or \^⌥↑Left  |
+| Last tab                                            | \^↑F12 or \^⌥↑Right |
+| Navigate back                                       | ⌘F9                 |
+| Navigate forward                                    | ⌘F10                |
+| Extract function from selection                     | ⌥⌘X                 |
+| Extract variable from selection                     | ⌥⌘V                 |
+| Reindent lines                                      | ⌘I                  |
+| Comment/uncomment current line/selection            | ↑⌘C                 |
+| Reflow Comment                                      | \^↑/                |
+| Reformat Selection                                  | ↑⌘A                 |
+| Show Diagnostics for Current Project                | ⌥↑⌘D                |
+| Transpose Letters                                   | \^T                 |
+| Move Lines Up/Down                                  | ⌥Up or Down         |
+| Copy Lines Up/Down                                  | ⌥⌘Up or Down        |
+| Jump to Matching Brace/Paren                        | \^P                 |
+| Expand to Matching Brace/Paren                      | \^↑E                |
+| Add Cursor Above Current Cursor                     | \^⌥Up               |
+| Add Cursor Below Current Cursor                     | \^⌥Down             |
+| Move Active Cursor Up                               | \^⌥↑Up              |
+| Move Active Cursor Down                             | \^⌥↑Down            |
+| Find and Replace                                    | ⌘F                  |
+| Find Next                                           | ⌘G                  |
+| Find Previous                                       | ↑⌘G                 |
+| *Use Selection for Find*                            | ⌘E                  |
+| Replace and Find                                    | ↑⌘J                 |
+| Find in Files                                       | ↑⌘F                 |
+| Check Spelling                                      | F7                  |
+| Rename Symbol in Scope                              | ⌥↑⌘M                |
+| Insert Roxygen Skeleton                             | ⌥↑⌘R                |
+
+| Source                                      | Shortcut            |
+|---------------------------------------------|---------------------|
+| Go to File/Function                         | \^ period           |
+| Move cursor to Source Editor                | \^1                 |
+| Toggle document outline                     | ↑⌘O                 |
+| Toggle visual markdown editor               | \^↑F4               |
+| New document (except on Chrome/Windows)     | ↑⌘N                 |
+| New document (Chrome only)                  | ⌥↑⌘N                |
+| Open document                               | ⌘O                  |
+| Save active document                        | ⌘S                  |
+| Save all documents                          | ⌘⌥S                 |
+| Close active document (except on Chrome)    | ⌘W                  |
+| Close active document (Chrome only)         | ⌥⌘W                 |
+| Close all open documents                    | ↑⌘W                 |
+| Close other documents                       | ⌥↑⌘W                |
+| Preview HTML (Markdown and HTML)            | ↑⌘K                 |
+| Knit Document (knitr)                       | ↑⌘K                 |
+| Compile Notebook                            | ↑⌘K                 |
+| Compile PDF (TeX and Sweave)                | ↑⌘K                 |
+| Insert chunk (Sweave and Knitr)             | ⌥⌘I                 |
+| Insert code section                         | ↑⌘R or \^↑R         |
+| Run current line/selection                  | ⌘⏎                  |
+| Run current line/selection (retain cursor)  | ⌥⏎                  |
+| Re-run previous region                      | ⌥⌘P                 |
+| Run current document                        | ⌥⌘R                 |
+| Run from document beginning to current line | ⌥⌘B                 |
+| Run from current line to document end       | ⌥⌘E                 |
+| Run the current function definition         | ⌥⌘F                 |
+| Run the current code section                | ⌥⌘T                 |
+| Run previous Sweave/Rmd code                | ⌥↑⌘P                |
+| Run the current Sweave/Rmd chunk            | ⌥⌘C                 |
+| Run the next Sweave/Rmd chunk               | ⌥⌘N                 |
+| Source a file                               | \^⌥G                |
+| Source the current document                 | ↑⌘S                 |
+| Source the current document (with echo)     | ↑⌘⏎                 |
+| Send current line/selection to terminal     | ⌥⌘⏎                 |
+| Fold Selected                               | ⌥⌘L                 |
+| Unfold Selected                             | ⌥↑⌘L                |
+| Fold All                                    | ⌥⌘O                 |
+| Unfold All                                  | ⌥↑⌘O                |
+| Go to line                                  | ⌥↑⌘G                |
+| Jump to                                     | ⌥↑⌘J                |
+| Expand selection                            | \^⌥↑Up              |
+| Shrink selection                            | \^⌥↑Down            |
+| Next section                                | ⌘PageDown           |
+| Previous section                            | ⌘PageUp             |
+| Split into lines                            | \^⌥A                |
+| Edit lines from start                       | \^⌥↑A               |
+| Switch to tab                               | \^↑ period          |
+| Previous tab                                | \^F11 or \^⌥Left    |
+| Previous tab (desktop only)                 | \^↑Tab              |
+| Next tab                                    | \^F12 or \^⌥Right   |
+| Next tab (desktop only)                     | \^Tab               |
+| First tab                                   | \^↑F11 or \^⌥↑Left  |
+| Last tab                                    | \^↑F12 or \^⌥↑Right |
+| Navigate back                               | ⌘F9                 |
+| Navigate forward                            | ⌘F10                |
+| Extract function from selection             | ⌥⌘X                 |
+| Extract variable from selection             | ⌥⌘V                 |
+| Reindent lines                              | ⌘I                  |
+| Comment/uncomment current line/selection    | ↑⌘C                 |
+| Reflow Comment                              | \^↑/                |
+| Reformat Selection                          | ↑⌘A                 |
+| Show Diagnostics for Current Project        | ⌥↑⌘D                |
+| Transpose Letters                           | \^T                 |
+| Move Lines Up/Down                          | ⌥Up or Down         |
+| Copy Lines Up/Down                          | ⌥⌘Up or Down        |
+| Jump to Matching Brace/Paren                | \^P                 |
+| Expand to Matching Brace/Paren              | \^↑E                |
+| Add Cursor Above Current Cursor             | \^⌥Up               |
+| Add Cursor Below Current Cursor             | \^⌥Down             |
+| Move Active Cursor Up                       | \^⌥↑Up              |
+| Move Active Cursor Down                     | \^⌥↑Down            |
+| Find and Replace                            | ⌘F                  |
+| Find Next                                   | ⌘G                  |
+| Find Previous                               | ↑⌘G                 |
+| Use Selection for Find                      | ⌘E                  |
+| Replace and Find                            | ↑⌘J                 |
+| Find in Files                               | ↑⌘F                 |
+| Check Spelling                              | F7                  |
+| Rename Symbol in Scope                      | ⌥↑⌘M                |
+| Insert Roxygen Skeleton                     | ⌥↑⌘R                |
+
+# Editing
+
+| Editing (Console and Source)            | Shortcut                   |
+|-----------------------------------------|----------------------------|
+| Undo                                    | ⌘Z                         |
+| Redo                                    | ↑⌘Z                        |
+| Cut                                     | ⌘X                         |
+| Copy                                    | ⌘C                         |
+| Paste                                   | ⌘V                         |
+| Paste with Indent                       | ⌘↑V                        |
+| Select All                              | ⌘A                         |
+| Jump to Word                            | ⌥Left or Right             |
+| Jump to Start/End                       | ⌘Up or Down                |
+| Delete Line                             | ⌘D                         |
+| Select                                  | ↑Arrow                     |
+| Select Word                             | ⌥↑Left or Right            |
+| Select to Line Start                    | ↑⌘Left                     |
+| Select to Line End                      | ↑⌘Right                    |
+| Select Page Up/Down                     | ↑PageUp or PageDown        |
+| Select to Start/End                     | ↑⌘Up or Down               |
+| Delete Word Left                        | ⌥Backspace or \^⌥Backspace |
+| Delete Word Right                       | ⌥Delete                    |
+| Delete to Line End                      | \^K                        |
+| Delete to Line Start                    | ⌥Backspace                 |
+| Indent                                  | Tab (at beginning of line) |
+| Outdent                                 | ↑Tab                       |
+| Yank line up to cursor                  | \^U                        |
+| Yank line after cursor                  | \^K                        |
+| Insert currently yanked text            | \^Y                        |
+| Insert assignment operator              | ⌥-                         |
+| Insert pipe operator                    | ↑⌘M                        |
+| Show help for function at cursor        | F1                         |
+| Show source code for function at cursor | F2                         |
+| Find usages for symbol at cursor (C)    | ⌥⌘U                        |
+
+# Completions
+
+| Completions (Console and Source) | Shortcut       |
+|----------------------------------|----------------|
+| Attempt completion               | Tab or ⌘Space  |
+| Navigate candidates              | Up or Down     |
+| Accept selected candidate        | ⏎ Tab or Right |
+| Dismiss completion popup         | Esc            |
+
+# Views
+
+| Views                       | Shortcut                                           |
+|-----------------------------|----------------------------------------------------|
+| Move focus to Source Editor | \^1                                                |
+| Zoom Source Editor          | \^↑1                                               |
+| Move focus to Console       | \^2                                                |
+| Zoom Console                | \^↑2                                               |
+| Move focus to Help          | \^3                                                |
+| Zoom Help                   | \^↑3                                               |
+| Move Focus to Terminal      | ⌥↑M                                                |
+| Show History                | \^4                                                |
+| Zoom History                | \^↑4                                               |
+| Show Files                  | \^5                                                |
+| Zoom Files                  | \^↑5                                               |
+| Show Plots                  | \^6                                                |
+| Zoom Plots                  | \^↑6                                               |
+| Show Packages               | \^7                                                |
+| Zoom Packages               | \^↑7                                               |
+| Show Environment            | \^8                                                |
+| Zoom Environment            | \^↑8                                               |
+| Show Viewer                 | \^9                                                |
+| Zoom Viewer                 | \^↑9                                               |
+| Show Git/SVN                | ⌘F1                                                |
+| Zoom Git/SVN                | \^↑F1                                              |
+| Show Build                  | ⌘F2                                                |
+| Zoom Build                  | \^↑F2                                              |
+| Show Connections            | No shortcut                                        |
+| Zoom Connections            | \^↑F5                                              |
+| Zoom Tutorial               | \^↑F6                                              |
+| Show Find in Files Results  | ⌘F6                                                |
+| Sync Editor & PDF Preview   | ⌘F8                                                |
+| Zoom left column            | \^⌥↑F12                                            |
+| Zoom right column           | \^⌥↑F11                                            |
+| Show all panes              | \^Alt0                                             |
+| Add source column           | ⌘F7                                                |
+| Global ⌥s                   | ⌘ comma (Chrome Desktop) ⌥⌘ comma (Safari Firefox) |
+| Project ⌥s                  | ↑⌘ comma                                           |
+
+# Help
+
+| Help                             | Shortcut |
+|----------------------------------|----------|
+| Show ⌘ Palette                   | ↑⌘P      |
+| Show Keyboard Shortcut Reference | ⌥↑K      |
+| Search R Help                    | \^⌥F1    |
+| Find in Help Topic               | ⌘F       |
+| Previous Help Topic              | ⌥↑F2     |
+| Next Help Topic                  | ⌥↑F3     |
+
+# Build
+
+| Build                  | Shortcut |
+|------------------------|----------|
+| Install and Restart    | ↑⌘B      |
+| Load All (devtools)    | ↑⌘L      |
+| Test Package (Desktop) | ↑⌘T      |
+| Test Package (Web)     | ⌥⌘F7     |
+| Check Package          | ↑⌘E      |
+| Document Package       | ↑⌘D      |
+
+# Debug
+
+| Debug                | Shortcut |
+|----------------------|----------|
+| Toggle Breakpoint    | ↑F9      |
+| Execute Next Line    | F10      |
+| Step Into Function   | ↑F4      |
+| Finish Function/Loop | ↑F7      |
+| Continue             | ↑F5      |
+| Stop Debugging       | ↑F8      |
+
+# Plots
+
+| Plots         | Shortcut            |
+|---------------|---------------------|
+| Previous plot | ⌥⌘F11 or ↑⌘PageUp   |
+| Next plot     | ⌥⌘F12 or ↑⌘PageDown |
+
+# Git
+
+| Git/SVN                              | Shortcut     |
+|--------------------------------------|--------------|
+| Diff active source document          | \^⌥D         |
+| Commit changes                       | \^⌥M         |
+| Scroll diff view                     | \^Up or Down |
+| Stage/Unstage (Git)                  | Spacebar     |
+| Stage/Unstage and move to next (Git) | ⏎            |
+
+# Session
+
+| Session                     | Shortcut |
+|-----------------------------|----------|
+| Quit Session (desktop only) | ⌘Q       |
+| Restart R Session           | ↑⌘0      |
+
+# Terminal
+
+| Terminal               | Shortcut |
+|------------------------|----------|
+| New Terminal           | ⌥↑R      |
+| Move Focus to Terminal | ⌥↑M      |
+| Previous Terminal      | ⌥↑F11    |
+| Next Terminal          | ⌥↑F12    |
+
+# Main
+
+| Main Menu (Server) | Shortcut |
+|--------------------|----------|
+| File Menu          | \^⌥F     |
+| Edit Menu          | \^⌥I     |
+| Code Menu          | \^⌥C     |
+| View Menu          | \^⌥V     |
+| Plots Menu         | \^⌥P     |
+| Session Menu       | \^⌥S     |
+| Build Menu         | \^⌥B     |
+| Debug Menu         | \^⌥U     |
+| Profile Menu       | \^⌥O     |
+| Tools Menu         | \^⌥T     |
+| Help Menu          | \^⌥H     |
