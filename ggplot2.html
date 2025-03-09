@@ -136,6 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#geom_freqpoly" id="toc-geom_freqpoly" class="nav-link" data-scroll-target="#geom_freqpoly">geom_freqpoly()</a></li>
   <li><a href="#geom_histogram" id="toc-geom_histogram" class="nav-link" data-scroll-target="#geom_histogram">geom_histogram()</a></li>
   </ul></li>
+  <li><a href="#geom_boxplot" id="toc-geom_boxplot" class="nav-link" data-scroll-target="#geom_boxplot">geom_boxplot()</a></li>
   </ul></li>
   <li><a href="#discrete" id="toc-discrete" class="nav-link" data-scroll-target="#discrete">Discrete</a>
   <ul>
@@ -146,13 +147,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#both-continuous" id="toc-both-continuous" class="nav-link" data-scroll-target="#both-continuous">Both Continuous</a>
   <ul>
-  <li><a href="#two-variables---one-discrete-one-continuous" id="toc-two-variables---one-discrete-one-continuous" class="nav-link" data-scroll-target="#two-variables---one-discrete-one-continuous">Two Variables - One Discrete, One Continuous</a></li>
-  <li><a href="#two-variables---both-discrete" id="toc-two-variables---both-discrete" class="nav-link" data-scroll-target="#two-variables---both-discrete">Two Variables - Both Discrete</a></li>
-  <li><a href="#two-variables---continuous-bivariate-distribution" id="toc-two-variables---continuous-bivariate-distribution" class="nav-link" data-scroll-target="#two-variables---continuous-bivariate-distribution">Two Variables - Continuous Bivariate Distribution</a></li>
-  <li><a href="#two-variables---continuous-function" id="toc-two-variables---continuous-function" class="nav-link" data-scroll-target="#two-variables---continuous-function">Two Variables - Continuous Function</a></li>
-  <li><a href="#two-variables---visualizing-error" id="toc-two-variables---visualizing-error" class="nav-link" data-scroll-target="#two-variables---visualizing-error">Two Variables - Visualizing Error</a></li>
-  <li><a href="#two-variables---maps" id="toc-two-variables---maps" class="nav-link" data-scroll-target="#two-variables---maps">Two Variables - Maps</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a>
+  <ul class="collapse">
+  <li><a href="#geom_label" id="toc-geom_label" class="nav-link" data-scroll-target="#geom_label">geom_label()</a></li>
+  <li><a href="#geom_text" id="toc-geom_text" class="nav-link" data-scroll-target="#geom_text">geom_text()</a></li>
   </ul></li>
+  <li><a href="#geom_point" id="toc-geom_point" class="nav-link" data-scroll-target="#geom_point">geom_point()</a></li>
+  <li><a href="#geom_smooth" id="toc-geom_smooth" class="nav-link" data-scroll-target="#geom_smooth">geom_smooth()</a></li>
+  <li><a href="#geom_rug" id="toc-geom_rug" class="nav-link" data-scroll-target="#geom_rug">geom_rug()</a></li>
+  <li><a href="#geom_quantile" id="toc-geom_quantile" class="nav-link" data-scroll-target="#geom_quantile">geom_quantile()</a></li>
+  </ul></li>
+  <li><a href="#one-discrete-one-continuous" id="toc-one-discrete-one-continuous" class="nav-link" data-scroll-target="#one-discrete-one-continuous">One Discrete, One Continuous</a>
+  <ul>
+  <li><a href="#geom_col" id="toc-geom_col" class="nav-link" data-scroll-target="#geom_col">geom_col()</a></li>
+  <li><a href="#geom_boxplot-1" id="toc-geom_boxplot-1" class="nav-link" data-scroll-target="#geom_boxplot-1">geom_boxplot()</a></li>
+  <li><a href="#geom_dotplot-1" id="toc-geom_dotplot-1" class="nav-link" data-scroll-target="#geom_dotplot-1">geom_dotplot()</a></li>
+  <li><a href="#geom_violin" id="toc-geom_violin" class="nav-link" data-scroll-target="#geom_violin">geom_violin()</a></li>
+  </ul></li>
+  <li><a href="#both-discrete" id="toc-both-discrete" class="nav-link" data-scroll-target="#both-discrete">Both Discrete</a></li>
+  <li><a href="#continuous-bivariate-distribution" id="toc-continuous-bivariate-distribution" class="nav-link" data-scroll-target="#continuous-bivariate-distribution">Continuous Bivariate Distribution</a></li>
+  <li><a href="#continuous-function" id="toc-continuous-function" class="nav-link" data-scroll-target="#continuous-function">Continuous Function</a></li>
+  <li><a href="#visualizing-error" id="toc-visualizing-error" class="nav-link" data-scroll-target="#visualizing-error">Visualizing Error</a></li>
+  <li><a href="#maps" id="toc-maps" class="nav-link" data-scroll-target="#maps">Maps</a></li>
   </ul></li>
   <li><a href="#three-variables" id="toc-three-variables" class="nav-link" data-scroll-target="#three-variables">Three Variables</a></li>
   <li><a href="#stats" id="toc-stats" class="nav-link" data-scroll-target="#stats">Stats</a></li>
@@ -783,8 +799,8 @@ $ unemploy &lt;dbl&gt; 2944, 2945, 2958, 3143, 3066, 3018, 2878, 3001, 2877, 270
 <p>Vector field data of seal movements. A data frame with 1155 rows and 4 variables. This dataset is likely used for visualizing seal movement patterns over time, possibly using vector field plots. The delta_long and delta_lat columns indicate how far a seal has moved from one observation to the next.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 70%">
+<col style="width: 35%">
+<col style="width: 64%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1773,7 +1789,7 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Triangular Kernel"</span>)</span>
 <span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange in a 2×2 grid</span></span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(gaussian, epanechnikov, rectangular, triangular, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(gaussian, epanechnikov, rectangular, triangular, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1870,7 +1886,7 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Binwidth = 5"</span>)</span>
 <span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange in a 2×2 grid</span></span>
-<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(histogram_1, histogram_2, histogram_3, histogram_5, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(histogram_1, histogram_2, histogram_3, histogram_5, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1881,24 +1897,50 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 </div>
 </section>
 </section>
+<section id="geom_boxplot" class="level3">
+<h3 class="anchored" data-anchor-id="geom_boxplot">geom_boxplot()</h3>
+<p><code>?geom_boxplot()</code> draws a box and whiskers plot (in the style of Tukey). The boxplot compactly displays the distribution of a continuous variable. It visualises five summary statistics (the median, two hinges and two whiskers), and all “outlying” points individually.</p>
+<p>Usage</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="cn">NULL</span>,</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="cn">NULL</span>,</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">stat =</span> <span class="st">"boxplot"</span>,</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">position =</span> <span class="st">"dodge2"</span>,</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  ...,</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outliers =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.colour =</span> <span class="cn">NULL</span>,</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.shape =</span> <span class="dv">19</span>,</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.size =</span> <span class="fl">1.5</span>,</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.stroke =</span> <span class="fl">0.5</span>,</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">outlier.alpha =</span> <span class="cn">NULL</span>,</span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">notch =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">notchwidth =</span> <span class="fl">0.5</span>,</span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">staplewidth =</span> <span class="dv">0</span>,</span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">varwidth =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">orientation =</span> <span class="cn">NA</span>,</span>
+<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">show.legend =</span> <span class="cn">NA</span>,</span>
+<span id="cb66-22"><a href="#cb66-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit.aes =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(hwy)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="discrete" class="level2">
 <h2 class="anchored" data-anchor-id="discrete">Discrete</h2>
 <section id="geom_bar" class="level3">
 <h3 class="anchored" data-anchor-id="geom_bar">geom_bar()</h3>
-<p><code>?geom_bar()</code> draws a bar chart.</p>
-<p><code>aes()</code> arguments: <code>x</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(fl)) <span class="sc">+</span> <span class="co"># Fuel type</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>There are two types of bar charts: <code>geom_bar()</code> and <code>geom_col()</code>:</p>
 <p><strong>geom_bar():</strong></p>
 <ul>
@@ -1908,10 +1950,23 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <p><strong>geom_col():</strong></p>
 <ul>
 <li>If you want the heights of the bars to represent values in the data.</li>
-<li>geom_col() requires y explicitly. Unlike geom_bar(), it does not count occurrences automatically.</li>
+<li>geom_col() <code>requires y explicitly</code>. So, it’s described in <code>Two variables, one discrete, one continuous</code>. Unlike geom_bar(), it does not count occurrences automatically.</li>
 <li>geom_col() uses stat_identity(): it leaves the data as is.</li>
 <li><em>use with pre-summarized data (e.g., counts, averages)</em></li>
 </ul>
+<p><code>?geom_bar()</code> draws a bar chart.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(class)) <span class="sc">+</span> <span class="co"># Fuel type</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -1919,43 +1974,389 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <h1>Two Variables</h1>
 <section id="both-continuous" class="level2">
 <h2 class="anchored" data-anchor-id="both-continuous">Both Continuous</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="text" class="level3">
+<h3 class="anchored" data-anchor-id="text">Text</h3>
+<p>Text geoms are useful for labeling plots. <strong>They can be used by themselves as scatterplots</strong> OR in <em>combination with other geoms</em>, for example, for <em>labeling points</em> or for <em>annotating the height of bars</em>.</p>
 <ul>
-<li><p><code>e + geom_label(aes(label = cty), nudge_x = 1, nudge_y = 1)</code>: Add text with a rectangle background. <code>aes()</code> arguments: - <code>x</code>, <code>y</code>, <code>label</code>, <code>alpha</code>, <code>angle</code>, <code>color</code>, <code>family</code>, <code>fontface</code>, <code>hjust</code>, <code>lineheight</code>, <code>size</code>, <code>vjust</code>.</p></li>
-<li><p><code>e + geom_point()</code>: Draw a scatter plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>shape</code>, <code>size</code>, <code>stroke</code>.</p></li>
-<li><p><code>e + geom_quantile()</code>: Fit and draw quantile regression for the plot data. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p></li>
-<li><p><code>e + geom_rug(sides = "bl")</code>: Draw a rug plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>linetype</code>, <code>linewidth</code>.</p></li>
-<li><p><code>e + geom_smooth(method = lm)</code>: Plot smoothed conditional means. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p></li>
-<li><p><code>e + geom_text(aes(label = cty), nudge_x = 1, nudge_y = 1)</code>: Add text to a plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>label</code>, <code>alpha</code>, <code>angle</code>, <code>color</code>, <code>family</code>, <code>fontface</code>, <code>hjust</code>, <code>lineheight</code>, <code>size</code>, <code>vjust</code>.</p></li>
+<li><code>?geom_text()</code> adds only text to the plot.</li>
+<li><code>?geom_label()</code> draws a rectangle behind the text, making it easier to read.</li>
+<li><code>aes()</code> arguments: - <code>x</code>, <code>y</code>, <code>label</code>, <code>alpha</code>, <code>angle</code>, <code>color</code>, <code>family</code>, <code>fontface</code>, <code>hjust</code>, <code>lineheight</code>, <code>size</code>, <code>vjust</code>.</li>
 </ul>
-<section id="two-variables---one-discrete-one-continuous" class="level3">
-<h3 class="anchored" data-anchor-id="two-variables---one-discrete-one-continuous">Two Variables - One Discrete, One Continuous</h3>
+<section id="geom_label" class="level4">
+<h4 class="anchored" data-anchor-id="geom_label">geom_label()</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> cty), <span class="at">nudge_x =</span> <span class="dv">1</span>, <span class="at">nudge_y =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<ul>
-<li><p><code>f + geom_col()</code>: Draw a bar plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>.</p></li>
-<li><p><code>f + geom_boxplot()</code>: Draw a box plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>lower</code>, <code>middle</code>, <code>upper</code>, <code>ymax</code>, <code>ymin</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>shape</code>, <code>linewidth</code>, <code>weight</code>.</p></li>
-<li><p><code>f + geom_dotplot(binaxis ="y", stackdir = "center")</code>: Draw a dot plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>.</p></li>
-<li><p><code>f + geom_violin(scale = "area")</code>: Draw a violin plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p></li>
-</ul>
+</div>
+</div>
 </section>
-<section id="two-variables---both-discrete" class="level3">
-<h3 class="anchored" data-anchor-id="two-variables---both-discrete">Two Variables - Both Discrete</h3>
+<section id="geom_text" class="level4">
+<h4 class="anchored" data-anchor-id="geom_text">geom_text()</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(cut, color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> cty), <span class="at">nudge_x =</span> <span class="dv">1</span>, <span class="at">nudge_y =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="geom_point" class="level3">
+<h3 class="anchored" data-anchor-id="geom_point">geom_point()</h3>
+<p><code>?geom_point()</code> draws a scatter plot.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>shape</code>, <code>size</code>, <code>stroke</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="geom_smooth" class="level3">
+<h3 class="anchored" data-anchor-id="geom_smooth">geom_smooth()</h3>
+<p><code>?geom_smooth()</code> plots <em>smoothed conditional means</em>. It aids the eye in seeing patterns in the presence of overplotting. <code>geom_smooth()</code> and <code>stat_smooth()</code> are effectively aliases: they both use the same arguments. Use stat_smooth() if you want to display the results with a non-standard geom.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p>
+<p><code>method</code> argument: - <em>defaults</em> to local regression: <code>loess</code> for small datasets, <code>gam</code> for larger ones. The trend line is nonlinear and flexible, adapting to data patterns. Best for identifying general trends in a dataset without assuming a linear relationship. - <code>method = lm</code> uses linear regression, assuming a linear relationship between x and y and fitting a straight line. Best for when you expect a linear relationship between variables or want to compare with a linear regression model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>smooth_df <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"Default"</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>() </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>smooth_lm <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"method = lm"</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(smooth_df, smooth_lm, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 34%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Default geom_smooth()</th>
+<th>geom_smooth(method = lm)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Method</td>
+<td>LOESS (for small datasets) or GAM</td>
+<td>Linear Regression (LM)</td>
+</tr>
+<tr class="even">
+<td>Trend Line Shape</td>
+<td>Flexible, nonlinear</td>
+<td>Straight, linear</td>
+</tr>
+<tr class="odd">
+<td>Best for</td>
+<td>Exploring trends in non-linear relationships</td>
+<td>Testing linear relationships</td>
+</tr>
+<tr class="even">
+<td>Computation Speed</td>
+<td>Slower for large datasets</td>
+<td>Faster, since it’s just a straight line</td>
+</tr>
+<tr class="odd">
+<td>Assumptions</td>
+<td>No assumption on data shape</td>
+<td>Assumes linearity</td>
+</tr>
+</tbody>
+</table>
+<p>Which method to use?</p>
+<ul>
+<li>Use default geom_smooth() when you are exploring the data and don’t want to impose a linear assumption.</li>
+<li>Use geom_smooth(method = lm) when you are specifically testing a linear model or need a clear comparison of a straight-line fit.</li>
+</ul>
+<p><strong>Tip</strong>: To see the equation of the fitted regression model, you can use <code>stat_smooth(method = lm, formula = y ~ x, se = FALSE)</code> and extract model coefficients separately using lm().</p>
+</section>
+<section id="geom_rug" class="level3">
+<h3 class="anchored" data-anchor-id="geom_rug">geom_rug()</h3>
+<p><code>?geom_rug()</code> is used to add <code>marginal distributions</code> to a plot by drawing small tick marks (or “rugs”) along the axes. It provides an additional layer of information, showing the distribution of data points along one or both axes. It supplements a 2d display with the two 1d marginal distributions. Rug plots display individual cases so are best used with smaller datasets.</p>
+<p>obs. A <code>marginal distribution</code> is the distribution of a single variable in a multivariate dataset, obtained by summing (or integrating) over the other variables (like summing the observations in a 2x2 table to find the total). It provides insight into how a single variable behaves regardless of other variables. In the context of bivariate (2D) data, you have two variables, say X and Y. The marginal distribution of X is obtained by ignoring Y and looking only at the values of X, and vice versa.</p>
+<p>Why use <code>geom_rug()</code>?</p>
+<ol type="1">
+<li><em>Enhance Density Information</em> – It helps visualize the concentration of data points, particularly in scatter plots or density plots.</li>
+<li>Identify <em>Data Clusters</em> – It highlights where data points are densely packed.</li>
+<li>Detect <em>Outliers</em> – Isolated ticks indicate sparse data regions or potential outliers.</li>
+<li>Provide a Compact <em>Alternative to Histograms</em> – Instead of a full marginal histogram, geom_rug() offers a minimalistic way to show distributions.</li>
+</ol>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>linetype</code>, <code>linewidth</code>,</p>
+<p>Add rugs to axis using the <code>sides</code> argument. - sides = “b” → Bottom (x-axis) - sides = “l” → Left (y-axis) - sides = “t” → Top - sides = “r” → Right</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(<span class="at">sides =</span> <span class="st">"bl"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="geom_quantile" class="level3">
+<h3 class="anchored" data-anchor-id="geom_quantile">geom_quantile()</h3>
+<p><code>?geom_quantile()</code> <em>fits a quantile regression</em> to the data and draws the fitted quantiles with lines. This is as a continuous analogue to geom_boxplot().</p>
+<p>Instead of modeling the mean (as in linear regression), quantile regression estimates conditional quantiles of the response variable. Unlike <code>geom_smooth()</code>, which estimates the mean trend, <code>geom_quantile()</code> shows how different quantiles of the response variable change across the predictor variable. Additionally, unlike <code>geom_smooth()</code>, it does not assume a normal distribution and provides insights into <strong>distribution tails</strong>.</p>
+<p>By <em>default</em>, it fits a <em>linear quantile regression</em> using <code>method = "rq"</code> from the {quantreg} package. But you may also use a <em>Nonlinear Quantile Regression</em> using <code>method = "rqss"</code> (smoothing splines). In the latter, <code>lambda</code> controls the smoothness of the fit.</p>
+<p>When to use:</p>
+<ul>
+<li>Skewed or heteroscedastic data – when variance changes across x.</li>
+<li>Identifying trends in different quantiles – instead of focusing only on the mean.</li>
+<li>Robust alternative to linear regression – quantile regression is less sensitive to outliers.</li>
+</ul>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_quantile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Smoothing formula not specified. Using: y ~ x</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Defaults to:</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_quantile(quantiles = c(0.25, 0.5, 0.75))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 35%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>geom_smooth()</th>
+<th>geom_quantile()</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regression Type</td>
+<td>Least Squares Regression (Mean)</td>
+<td>Quantile Regression</td>
+</tr>
+<tr class="even">
+<td>Trend Estimate</td>
+<td>Mean response</td>
+<td>Conditional quantiles (e.g., median, 10th, 90th percentile)</td>
+</tr>
+<tr class="odd">
+<td>Best For</td>
+<td>Identifying central trends</td>
+<td>Examining distributions across different percentiles</td>
+</tr>
+<tr class="even">
+<td>Example Use Cases</td>
+<td>General trend analysis</td>
+<td>Analyzing skewed data, outliers, or heteroscedasticity</td>
+</tr>
+</tbody>
+</table>
+<p><em>Comparing <code>geom_smooth</code> and <code>geom_quantile</code></em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> </span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_quantile</span>(<span class="at">quantiles =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'
+Smoothing formula not specified. Using: y ~ x</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="one-discrete-one-continuous" class="level2">
+<h2 class="anchored" data-anchor-id="one-discrete-one-continuous">One Discrete, One Continuous</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="geom_col" class="level3">
+<h3 class="anchored" data-anchor-id="geom_col">geom_col()</h3>
+<p><code>?geom_col()</code> draws a bar plot.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy)) <span class="sc">+</span> <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What is geom_col() doing in this plot?</p>
+<ul>
+<li>The x aesthetic is mapped to class (car class categories).</li>
+<li>The y aesthetic is mapped to hwy (highway miles per gallon).</li>
+<li>Each bar height represents the sum of hwy values for each class.</li>
+</ul>
+<p>Why is this happening?</p>
+<p>Unlike <code>geom_bar()</code>, which counts occurrences in a categorical variable, <code>geom_col()</code> uses the actual values in the y aesthetic. So in this case, geom_col() is summing up the hwy values for each car class.</p>
+<p>What Might Be the Issue?</p>
+<ul>
+<li><code>hwy</code> is not a single value per class — it’s a numeric variable with multiple observations per class.</li>
+<li>The bars in the plot show the <code>sum of all hwy values</code> for each class, which may not be the intended representation.</li>
+</ul>
+<p>How to Fix It?</p>
+<p>If you want to show the <code>mean</code> highway MPG per class instead of the sum, use <code>stat = "summary"</code> inside geom_bar(): - <code>geom_bar(stat = "summary")</code> tells ggplot to <em>summarize hwy instead of counting occurrences</em>. - <code>fun = mean</code> ensures the mean highway MPG is plotted for each class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy)) <span class="sc">+</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Why Not <code>geom_col()</code>?</p>
+<ul>
+<li><code>geom_col()</code> expects pre-aggregated data (i.e., y must already be a computed value).</li>
+<li>If you want to use <code>geom_col()</code>, you must pre-calculate the mean</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>mpg_summary <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(class) <span class="sc">%&gt;%</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_hwy =</span> <span class="fu">mean</span>(hwy))</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg_summary, <span class="fu">aes</span>(class, mean_hwy)) <span class="sc">+</span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="geom_boxplot-1" class="level3">
+<h3 class="anchored" data-anchor-id="geom_boxplot-1">geom_boxplot()</h3>
+<p><code>?geom_boxplot()</code> draws a <code>box and whiskers plot</code> (in the style of Tukey). The boxplot compactly displays the distribution of a <em>continuous variable</em>. It visualises five summary statistics (the median, two hinges and two whiskers), and all “outlying” points individually.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>lower</code>, <code>middle</code>, <code>upper</code>, <code>ymax</code>, <code>ymin</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>shape</code>, <code>linewidth</code>, <code>weight</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy)) <span class="sc">+</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>What does this do?</p>
+<ul>
+<li><code>class</code> is mapped to the <code>x-axis</code> (<em>categorical</em> variable).</li>
+<li><code>hwy</code> is mapped to the <code>y-axis</code> (<em>numeric</em> variable).</li>
+<li>Creates separate boxplots for each car class, showing the distribution of highway MPG (hwy) within each category.</li>
+</ul>
+<p>So, although boxplots are used used to sumarrize continuous data, if you map a discrete value to either <code>x</code> or <code>y</code>, it will show the distribution within each category.</p>
+</section>
+<section id="geom_dotplot-1" class="level3">
+<h3 class="anchored" data-anchor-id="geom_dotplot-1">geom_dotplot()</h3>
+<p>Draw a dot plot. Similarly to <code>geom_boxplot</code>, mapping a <code>discrete</code> variable do <code>x</code> means you will create multiple dot plots (one for each class), allowing comparison of hwy distributions across car classes.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy)) <span class="sc">+</span> </span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binaxis =</span><span class="st">"y"</span>, <span class="at">stackdir =</span> <span class="st">"center"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Bin width defaults to 1/30 of the range of the data. Pick better value with
+`binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="geom_violin" class="level3">
+<h3 class="anchored" data-anchor-id="geom_violin">geom_violin()</h3>
+<p><code>?geom_violin()</code> draws a violin plot. A violin plot is a <em>compact display of a continuous distribution</em>. It is a blend of <code>geom_boxplot()</code> and <code>geom_density()</code>: a violin plot is a <em>mirrored density plot displayed in the same way as a boxplot</em>.</p>
+<p><code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(class, hwy)) <span class="sc">+</span> </span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">scale =</span> <span class="st">"area"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="both-discrete" class="level2">
+<h2 class="anchored" data-anchor-id="both-discrete">Both Discrete</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(cut, color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>g + geom_count()</code>: Plot a count of points in an area to address over plotting. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>shape</code>, <code>size</code>, <code>stroke</code>.</p></li>
-<li><p><code>e + geom_jitter(height = 2, width = 2)</code>: Jitter points in a plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>shape</code>, <code>size</code>.</p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) geom_jitter(height = 2, width = 2)</code>: Jitter points in a plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>shape</code>, <code>size</code>.</p></li>
 </ul>
 </section>
-<section id="two-variables---continuous-bivariate-distribution" class="level3">
-<h3 class="anchored" data-anchor-id="two-variables---continuous-bivariate-distribution">Two Variables - Continuous Bivariate Distribution</h3>
+<section id="continuous-bivariate-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-bivariate-distribution">Continuous Bivariate Distribution</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(carat, price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>h + geom_bin2d(binwidth = c(0.25, 500))</code>: Draw a heatmap of 2D rectangular bin counts. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>linetype</code>, <code>size</code>, <code>weight</code>.</p></li>
@@ -1963,10 +2364,10 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <li><p><code>h + geom_hex()</code>: Draw a heatmap of 2D hexagonal bin counts. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>linewidth</code>.</p></li>
 </ul>
 </section>
-<section id="two-variables---continuous-function" class="level3">
-<h3 class="anchored" data-anchor-id="two-variables---continuous-function">Two Variables - Continuous Function</h3>
+<section id="continuous-function" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-function">Continuous Function</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(date, unemploy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(economics, <span class="fu">aes</span>(date, unemploy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>i + geom_area()</code>: Draw an area plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>linetype</code>, <code>linewidth</code>.</p></li>
@@ -1974,11 +2375,11 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <li><p><code>i + geom_step(direction = "hv"</code>: Draw a stairstep plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>alpha</code>, <code>color</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>.</p></li>
 </ul>
 </section>
-<section id="two-variables---visualizing-error" class="level3">
-<h3 class="anchored" data-anchor-id="two-variables---visualizing-error">Two Variables - Visualizing Error</h3>
+<section id="visualizing-error" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-error">Visualizing Error</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">grp =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">fit =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">se =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>j <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(grp, fit, <span class="at">ymin =</span> fit <span class="sc">-</span> se, <span class="at">ymax =</span> fit <span class="sc">+</span> se))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">grp =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">fit =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">se =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>j <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(grp, fit, <span class="at">ymin =</span> fit <span class="sc">-</span> se, <span class="at">ymax =</span> fit <span class="sc">+</span> se))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>j + geom_crossbar(fatten = 2)</code>: Draw a crossbar. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>ymax</code>, <code>ymin</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>.</p></li>
@@ -1987,11 +2388,11 @@ $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1
 <li><p><code>j + geom_pointrange()</code>: Draw a point range. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>ymin</code>, <code>ymax</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>group</code>, <code>linetype</code>, <code>shape</code>, <code>linewidth</code>.</p></li>
 </ul>
 </section>
-<section id="two-variables---maps" class="level3">
-<h3 class="anchored" data-anchor-id="two-variables---maps">Two Variables - Maps</h3>
+<section id="maps" class="level2">
+<h2 class="anchored" data-anchor-id="maps">Maps</h2>
 <p>Draw the appropriate geometric object depending on the simple features present in the data. <code>aes()</code> arguments: <code>map_id</code>, <code>alpha</code>, <code>color</code>, <code>fill</code>, <code>linetype</code>, <code>linewidth</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="fu">system.file</span>(<span class="st">"shape/nc.shp"</span>, <span class="at">package =</span> <span class="st">"sf"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `nc' from data source 
   `/Users/gustavosplmoura/Library/R/arm64/4.4/library/sf/shape/nc.shp' 
@@ -2002,24 +2403,23 @@ Dimension:     XY
 Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
 Geodetic CRS:  NAD27</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nc) <span class="sc">+</span></span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> AREA))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nc) <span class="sc">+</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> AREA))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-</section>
 <section id="three-variables" class="level1">
 <h1>Three Variables</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>seals<span class="sc">$</span>z <span class="ot">&lt;-</span> <span class="fu">with</span>(seals, <span class="fu">sqrt</span>(delta_long<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> delta_lat<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(seals, <span class="fu">aes</span>(long, lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>seals<span class="sc">$</span>z <span class="ot">&lt;-</span> <span class="fu">with</span>(seals, <span class="fu">sqrt</span>(delta_long<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> delta_lat<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(seals, <span class="fu">aes</span>(long, lat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>l + geom_contour(aes(z = z))</code>: Draw 2D contour plot. <code>aes()</code> arguments: <code>x</code>, <code>y</code>, <code>z</code>, <code>alpha</code>, <code>color</code>, <code>group</code>, <code>linetype</code>, <code>linewidth</code>, <code>weight</code>.</p></li>
@@ -2035,11 +2435,11 @@ Geodetic CRS:  NAD27</code></pre>
 <p>A stat builds new variables to plot (e.g., count, prop).</p>
 <p>Visualize a stat by changing the default stat of a geom function, <code>geom_bar(stat = "count")</code>, or by using a stat function, <code>stat_count(geom = "bar")</code>, which calls a default geom to make a layer (equivalent to a geom function). Use <code>after_stat(name)</code> syntax to map the stat variable <code>name</code> to an aesthetic.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">+</span> <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(level)), <span class="at">geom =</span> <span class="st">"polygon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>i <span class="sc">+</span> <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(level)), <span class="at">geom =</span> <span class="st">"polygon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-65-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2049,25 +2449,25 @@ Geodetic CRS:  NAD27</code></pre>
 <li><p><code>hwy stat_bin(binwidth = 1, boundary = 10)</code>: <code>x</code>, <code>y</code> | <code>count</code>, <code>ncount</code>, <code>density</code>, <code>ndensity</code></p></li>
 <li><p><code>hwy stat_count(width = 1)</code>: <code>x</code>, <code>y</code> | <code>count</code>, <code>density</code></p></li>
 <li><p><code>hwy stat_density(adjust = 1, kernel = "gaussian")</code>: <code>x</code>, <code>y</code> | <code>count</code>, <code>density</code>, <code>scaled</code></p></li>
-<li><p><code>e + stat_bin_2d(bins = 30, drop = T)</code>: <code>x</code>, <code>y</code>, <code>fill</code> | <code>count</code>, <code>density</code></p></li>
-<li><p><code>e + stat_bin_hex(bins =30)</code>: <code>x</code>, <code>y</code>, <code>fill</code> | <code>count</code>, <code>density</code></p></li>
-<li><p><code>e + stat_density_2d(contour = TRUE, n = 100)</code>: <code>x</code>, <code>y</code>, <code>color</code>, <code>linewidth</code> | <code>level</code></p></li>
-<li><p><code>e + stat_ellipse(level = 0.95, segments = 51, type = "t")</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_bin_2d(bins = 30, drop = T)</code>: <code>x</code>, <code>y</code>, <code>fill</code> | <code>count</code>, <code>density</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_bin_hex(bins =30)</code>: <code>x</code>, <code>y</code>, <code>fill</code> | <code>count</code>, <code>density</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_density_2d(contour = TRUE, n = 100)</code>: <code>x</code>, <code>y</code>, <code>color</code>, <code>linewidth</code> | <code>level</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_ellipse(level = 0.95, segments = 51, type = "t")</code></p></li>
 <li><p><code>l + stat_contour(aes(z = z))</code>: <code>x</code>, <code>y</code>, <code>z</code>, <code>order</code> | <code>level</code></p></li>
 <li><p><code>l + stat_summary_hex(aes(z = z), bins = 30, fun = max)</code>: <code>x</code>, <code>y</code>, <code>z</code>, <code>fill</code> | <code>value</code></p></li>
 <li><p><code>l + stat_summary_2d(aes(z = z), bins = 30, fun = mean)</code>: <code>x</code>, <code>y</code>, <code>z</code>, <code>fill</code> | <code>value</code></p></li>
-<li><p><code>f + stat_boxplot(coef = 1.5)</code>: <code>x</code>, <code>y</code> | <code>lower</code>, <code>middle</code>, <code>upper</code>, <code>width</code>, <code>ymin</code>, <code>ymax</code></p></li>
-<li><p><code>f + stat_ydensity(kernel = "gaussian", scale = "area")</code>: <code>x</code>, <code>y</code> | <code>density</code>, <code>scaled</code>, <code>count</code>, <code>n</code>, <code>violinwidth</code>, <code>width</code></p></li>
-<li><p><code>e + stat_ecdf(n = 40)</code>: <code>x</code>, <code>y</code> | <code>x</code>, <code>y</code></p></li>
-<li><p><code>e + stat_quantile(quantiles = c(0.1, 0.9), formula = y ~ log(x), method = "rq")</code>: <code>x</code>, <code>y</code> | <code>quantile</code></p></li>
-<li><p><code>e + stat_smooth(method = "lm", formula = y ~ x, se = T, level = 0.95)</code>: <code>x</code>, <code>y</code> | <code>se</code>, <code>x</code>, <code>y</code>, <code>ymin</code>, <code>ymax</code></p></li>
+<li><p><code>ggplot(mpg, aes(class, hwy)) + stat_boxplot(coef = 1.5)</code>: <code>x</code>, <code>y</code> | <code>lower</code>, <code>middle</code>, <code>upper</code>, <code>width</code>, <code>ymin</code>, <code>ymax</code></p></li>
+<li><p><code>ggplot(mpg, aes(class, hwy)) + stat_ydensity(kernel = "gaussian", scale = "area")</code>: <code>x</code>, <code>y</code> | <code>density</code>, <code>scaled</code>, <code>count</code>, <code>n</code>, <code>violinwidth</code>, <code>width</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_ecdf(n = 40)</code>: <code>x</code>, <code>y</code> | <code>x</code>, <code>y</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_quantile(quantiles = c(0.1, 0.9), formula = y ~ log(x), method = "rq")</code>: <code>x</code>, <code>y</code> | <code>quantile</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_smooth(method = "lm", formula = y ~ x, se = T, level = 0.95)</code>: <code>x</code>, <code>y</code> | <code>se</code>, <code>x</code>, <code>y</code>, <code>ymin</code>, <code>ymax</code></p></li>
 <li><p><code>ggplot() + xlim(-5, 5) + stat_function(fun = dnorm, n = 20, geom = "point")</code>: <code>x</code> | <code>x</code>, <code>y</code></p></li>
 <li><p><code>ggplot() + stat_qq(aes(sample = 1:100))</code>: <code>x</code>, <code>y</code>, <code>sample</code> | <code>sample</code>, <code>theoretical</code></p></li>
-<li><p><code>e + stat_sum()</code>: <code>x</code>, <code>y</code>, <code>size</code> | <code>n</code>, <code>prop</code></p></li>
-<li><p><code>e + stat_summary(fun.data = "mean_cl_boot")</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_sum()</code>: <code>x</code>, <code>y</code>, <code>size</code> | <code>n</code>, <code>prop</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_summary(fun.data = "mean_cl_boot")</code></p></li>
 <li><p><code>h + stat_summary_bin(fun = "mean", geom = "bar")</code></p></li>
-<li><p><code>e + stat_identity()</code></p></li>
-<li><p><code>e + stat_unique()</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_identity()</code></p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) stat_unique()</code></p></li>
 </ul>
 </section>
 <section id="scales" class="level1">
@@ -2075,19 +2475,19 @@ Geodetic CRS:  NAD27</code></pre>
 <p>Override defaults with <strong>scales</strong> package.</p>
 <p><strong>Scales</strong> map data values to the visual values of an aesthetic. To change a mapping, add a new scale.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(fl)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> fl))</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>n <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"skyblue"</span>, <span class="st">"royalblue"</span>, <span class="st">"blue"</span>, <span class="st">"navy"</span>),</span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"p"</span>, <span class="st">"r"</span>),</span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span><span class="fu">c</span>(<span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"p"</span>, <span class="st">"r"</span>),</span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"fuel"</span>, </span>
-<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"P"</span>, <span class="st">"R"</span>)</span>
-<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(fl)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> fl))</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>n <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"skyblue"</span>, <span class="st">"royalblue"</span>, <span class="st">"blue"</span>, <span class="st">"navy"</span>),</span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"p"</span>, <span class="st">"r"</span>),</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span><span class="fu">c</span>(<span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"p"</span>, <span class="st">"r"</span>),</span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"fuel"</span>, </span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"P"</span>, <span class="st">"R"</span>)</span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2126,7 +2526,7 @@ Geodetic CRS:  NAD27</code></pre>
 <section id="color-and-fill-scales-continuous" class="level3">
 <h3 class="anchored" data-anchor-id="color-and-fill-scales-continuous">Color and Fill Scales (Continuous)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>o <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(hwy)) <span class="sc">+</span> <span class="fu">geom_dotplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> ..x..))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>o <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="fu">aes</span>(hwy)) <span class="sc">+</span> <span class="fu">geom_dotplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> ..x..))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>o + scale_fill_distiller(palette = "Blues")</code>: Interpolate a palette into a continuous scale.</p></li>
@@ -2138,7 +2538,7 @@ Geodetic CRS:  NAD27</code></pre>
 <section id="shape-and-size-scales" class="level3">
 <h3 class="anchored" data-anchor-id="shape-and-size-scales">Shape and Size Scales</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> e <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> fl, <span class="at">size =</span> cyl))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> fl, <span class="at">size =</span> cyl))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>p + scale_shape() + scale_size()</code>: Map discrete values to shape and size aesthetics.</p></li>
@@ -2152,7 +2552,7 @@ Geodetic CRS:  NAD27</code></pre>
 <section id="coordinate-systems" class="level1">
 <h1>Coordinate Systems</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(fl)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(fl)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>u + coord_cartesian(xlim = c(0, 5))</code>: <code>xlim</code>, <code>ylim</code>. The default Cartesian coordinate system.</p></li>
@@ -2167,22 +2567,22 @@ Geodetic CRS:  NAD27</code></pre>
 <h1>Position Adjustments</h1>
 <p>Position adjustments determine how to arrange geoms that would otherwise occupy the same space.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(fl, <span class="at">fill =</span> drv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(fl, <span class="at">fill =</span> drv))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>s + geom_bar(position = "dodge")</code>: Arrange elements side by side.</p></li>
 <li><p><code>s + geom_bar(position = "fill")</code>: Stack elements on top of one another, normalize height.</p></li>
-<li><p><code>e + geom_point(position = "jitter")</code>: Add random noise to X and Y position of each element to avoid over plotting.</p></li>
-<li><p><code>e + geom_label(position = "nudge")</code>: Nudge labels away from points.</p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) + geom_point(position = "jitter")</code>: Add random noise to X and Y position of each element to avoid over plotting.</p></li>
+<li><p><code>ggplot(mpg, aes(cty, hwy)) + geom_label(position = "nudge")</code>: Nudge labels away from points.</p></li>
 <li><p><code>s + geom_bar(position = "stack")</code>: Stack elements on top of one another.</p></li>
 </ul>
 <p>Each position adjustment can be recast as a function with manual <code>width</code> and <code>height</code> arguments:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>s <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>s <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-70-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2202,19 +2602,19 @@ Geodetic CRS:  NAD27</code></pre>
 <li><p><code>u + theme()</code>: Customize aspects of the theme such as axis, legend, panel, and facet properties.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>u <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Title"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>u <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Title"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>u <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"blue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>u <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"blue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ggplot2_files/figure-html/unnamed-chunk-57-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-71-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2224,7 +2624,7 @@ Geodetic CRS:  NAD27</code></pre>
 <h1>Faceting</h1>
 <p>Facets divide a plot into subplots based on the values of one or more discrete variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p><code>t + facet_grid(. ~ fl)</code>: Facet into a column based on fl.</p></li>
@@ -2268,7 +2668,7 @@ Geodetic CRS:  NAD27</code></pre>
 <p>Learn more at <a href="https://ggplot2.tidyverse.org">ggplot2.tidyverse.org</a>.</p>
 <p>Updated: 2025-03.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] '3.5.1'</code></pre>
 </div>
